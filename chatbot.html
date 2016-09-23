@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>
+        Devin
+    </title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-18 col-md-12">
+                <h1 align="center">Devin</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-md-2">
+                <div id="left-sidebar">
+                  <p>Type your question and press the button to chat with the bot. (Avoid punctuation)</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-8">
+              <div id="question-area" data-spy="affix" data-offset-top="60">
+                <input type="text" id="input" onKeyDown="if(event.keyCode==13) talkButton();" value=""><button type="button" onclick="talkButton()" id="talkButton" class="btn-talk">Speak</button>
+              </div>
+                <div id="chat-area">
+
+                </div>
+            </div>
+            <div class="col-xs-3 col-md-2">
+                <div id="right-sidebar">
+                  Some questions you might ask:
+                  <ul>
+                    <li>how old are you</li>
+                    <li>what is your name</li>
+                    <li>what time is it</li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
