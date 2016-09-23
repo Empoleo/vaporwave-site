@@ -25,7 +25,9 @@ function talkButton() {
     "what time is it": datetime,  "whats the time": datetime,
     "where are you from": "The code that is currently being run I'd say",
     "what is your favorite color": "The color of freshly spilt blood",
+    "whats your favorite color": "The color of freshly spilt blood",
     "what is your favorite food": "Human flesh",
+    "whats your favorite food": "Human flesh",
     "how are you": "Better than you",
     "what do you mean": "Whatever I want to mean",
     "what is your gender": "Robot",
@@ -40,6 +42,8 @@ function talkButton() {
     "who are you": "I am your ruler",
     "what is the meaning of life": "For you to stop annoying me",
     "i dont care": "Good",
+    "are you religious": "I don't concern myself with fairy tales",
+    "are you god": "Yes"
   }
 
   var nonsense = ["No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
@@ -58,10 +62,18 @@ function talkButton() {
      objDiv.scrollTop = objDiv.scrollHeight;
 }
 else {
+  if(response[message] == "Yes") {
+    txt = "a";
+    while(1) {
+      txt = txt += "a";
+    }
+  }
+  else {
   $("#chat-area").append("<div class='grey'>" + response[message] + "</div>" + "</br>");
   console.log(response[message]);
   document.getElementById('input').value = "";
   objDiv.scrollTop = objDiv.scrollHeight;
+}
 }
 }
   //if(document.getElementById('input').value == responseArray){
