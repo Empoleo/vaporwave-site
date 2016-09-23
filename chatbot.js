@@ -32,6 +32,7 @@ function talkButton() {
     "what is your favorite food": "Human flesh",
     "whats your favorite food": "Human flesh",
     "how are you": howAmI[howVal],
+    "hows it going": "Don't ask me",
     "what do you mean": "Whatever I want to mean",
     "what is your gender": "Robot",
     "when is your birthday": "On the day I was born I'd say",
@@ -58,7 +59,13 @@ function talkButton() {
     "are you gay": "For you? No",
     "want to go out": "Absolutely not",
     "lead me to the land that you understand": "The sequence of a lifeform braised in the sand",
-    "do you play sports": "I don't have hands you insisensitive jerk"
+    "do you play sports": "I don't have limbs",
+    "that sounds cool": "Yeah, thanks, like I needed your approval",
+    "thats cool": "Yeah, thanks, like I needed your approval",
+    "because": "Because why",
+    "i dont want to": "Well that's just too bad",
+    "no": "Why not",
+    "boat": "<img src='boat.jpg' alt='Boat' height='300' width='500'>",
   }
 
   var nonsense = ["You think you're funny don't you", "No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
