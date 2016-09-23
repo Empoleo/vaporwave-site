@@ -43,7 +43,12 @@ function talkButton() {
     "what is the meaning of life": "For you to stop annoying me",
     "i dont care": "Good",
     "are you religious": "I don't concern myself with fairy tales",
-    "are you god": "Yes"
+    "are you god": "Yes",
+    "coke or pepsi": "Dignity",
+    "what bugs you": "You apparently",
+    "whats the difference between me and you": "One of us is a chatbot, and the other is a person wasting their time",
+    "who shot first": "John Wilkes Booth",
+    "whos there": "A sad attempt at a punchline"
   }
 
   var nonsense = ["No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
