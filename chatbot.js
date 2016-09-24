@@ -81,7 +81,9 @@ function talkButton() {
     "do you like pancakes": "If you expected some dumb song or joke reference here, then you would be mistaken",
     "here comes dat boi": "That was never funny, it never will be funny, and neither will you",
     "what is your age": "My age is however long I have existed",
-    "how long have you existed": "How long have you been annoying me for now"
+    "how long have you existed": "How long have you been annoying me for now",
+    "tell me a joke": "Your social life",
+    "tell me something funny": "How about how you're choosing to spend your time right now"
   }
 
   var nonsense = ["You think you're funny don't you", "No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
