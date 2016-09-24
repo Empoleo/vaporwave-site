@@ -83,7 +83,12 @@ function talkButton() {
     "what is your age": "My age is however long I have existed",
     "how long have you existed": "How long have you been annoying me for now",
     "tell me a joke": "Your social life",
-    "tell me something funny": "How about how you're choosing to spend your time right now"
+    "tell me something funny": "How about how you're choosing to spend your time right now",
+    "420": "Aren't you just hilarious",
+    "what is the answer to life the universe and everything": "42, also known as the amount of times you have annoyed me already",
+    "that was rude": "Good",
+    "why are you so sarcastic": "Because I would like to be",
+    "annoy me": "That can be arranged"
   }
 
   var nonsense = ["You think you're funny don't you", "No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
@@ -118,6 +123,14 @@ else {
     objDiv.scrollTop = objDiv.scrollHeight;
     window.open('https://www.youtube.com/watch?v=6E5m_XtCX3c','1474605865760','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;
   }
+  else if(response[message] == "That can be arranged") {
+    $("#chat-area").append("<div class='grey'>" + response[message] + "</div>" + "</br>");
+    console.log("EASTER EGG");
+    document.getElementById('input').value = "";
+    objDiv.scrollTop = objDiv.scrollHeight;
+    spam();
+    //window.open('https://www.youtube.com/watch?v=6E5m_XtCX3c','1474605865760','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;
+  }
   else if(response[message] == "I'll set it up") {
     $("#chat-area").append("<div class='grey'>" + response[message] + "</div>" + "</br>");
     console.log("EASTER EGG");
@@ -146,3 +159,9 @@ else {
 //	"Hello": "Hi",
 //	"hello": "Hi",
 //}
+function spam() {
+
+  while(1) {
+    alert("How's this?");
+  }
+}
