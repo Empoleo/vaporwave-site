@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>B a t t l e s h i p !</title>
+		<link rel="stylesheet" type="text/css" href="battleship.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Ship.svg/2000px-Ship.svg.png"/>
+	</head>
+	<body>
+		<center>
+<font color="white">
+	<div id="instructionsArea">
+		<h1>Battleship</h1>
+
+		<audio id="hitSound">
+		  <source src="boom.mp3" type="audio/mpeg">
+		  Your browser does not support the audio element.
+		</audio>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">x</span>
+    <p id="tries">You won in </p>
+  </div>
+
+</div>
+		<font color="white">
+		<p id="instructions">Use the text box to enter your coordinate guess. Try to sink every battleship!</p>
+	</font>
+	</div>
+</font>
+	<center>
+	<input type="text" id="blah"></input>
+
+	<button onclick="fireTorpedo()" id="fireTorpedo">Fire</button>
+</center>
+	<div id="gameboard">
+	</div>
+
+	<script type="text/javascript" src="battleship.js"></script>
+</center>
+	</body>
+</html>

@@ -66,6 +66,7 @@ function talkButton() {
     "i dont want to": "Well that's just too bad",
     "no": "Why not",
     "boat": "<img src='boat.jpg' alt='Boat' height='300' width='500'>",
+    "i want to play a game": "I'll set it up",
   }
 
   var nonsense = ["You think you're funny don't you", "No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
@@ -99,6 +100,13 @@ else {
     document.getElementById('input').value = "";
     objDiv.scrollTop = objDiv.scrollHeight;
     window.open('https://www.youtube.com/watch?v=6E5m_XtCX3c','1474605865760','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;
+  }
+  else if(response[message] == "I'll set it up") {
+    $("#chat-area").append("<div class='grey'>" + response[message] + "</div>" + "</br>");
+    console.log("EASTER EGG");
+    document.getElementById('input').value = "";
+    objDiv.scrollTop = objDiv.scrollHeight;
+    window.open('battleship.html','1474605865760','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;
   }
   else {
   $("#chat-area").append("<div class='grey'>" + response[message] + "</div>" + "</br>");
