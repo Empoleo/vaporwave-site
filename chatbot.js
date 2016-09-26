@@ -66,6 +66,7 @@ function talkButton() {
     "i dont want to": "Well that's just too bad",
     "no": "Why not",
     "boat": "<img src='boat.jpg' alt='Boat' height='300' width='500'>",
+    "dog": "<img src='dog.jpg' alt='dog' height='300' width='500'>",
     "i want to play a game": "I'll set it up",
     "thanks": "You aren't welcome",
     "sorry": "As you should be",
@@ -88,11 +89,19 @@ function talkButton() {
     "what is the answer to life the universe and everything": "42, also known as the amount of times you have annoyed me already",
     "that was rude": "Good",
     "why are you so sarcastic": "Because I would like to be",
-    "annoy me": "That can be arranged"
+    "annoy me": "That can be arranged",
+    "i dont know": "You don't know a lot of things",
+    "dont be mean": "Don't be dumb",
+    "im not ignorant": "Then i'm not a chatbot",
+    "what is the weather like today": "How hard is it to look out of a window?",
+    "whats the weather": "What's it like to look outside",
+    "what is the temperature": "You're the one actually capable of checking",
+    "what do you look like": "A couple lines of javascript",
+    "what do you do for fun": "When you lose the bliss of ignorance you can no longer have fun"
   }
 
-  var nonsense = ["You think you're funny don't you", "No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
-  var random = Math.floor(Math.random() * 14) + 0;
+  var nonsense = ["I'd sigh but i'm not capable of it", "You think you're funny don't you", "No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
+  var random = Math.floor(Math.random() * 15) + 0;
 
   //document.getElementById('chat-area').textContent = document.getElementById('input').value;
   if(document.getElementById('input').value != "") {
