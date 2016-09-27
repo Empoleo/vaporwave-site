@@ -6,6 +6,11 @@ function talkButton() {
   var howVal = Math.floor(Math.random() * 5) + 0;
   var currentdate = new Date();
   var hours = currentdate.getHours();
+  var x = document.getElementById("seinfeld");
+
+  function playAudio() {
+      x.play();
+  }
   if (hours > 12) {
     hours -= 12;
   }
@@ -25,7 +30,7 @@ function talkButton() {
     "whats up": greetResponse[randomResponse],
     "what is your name": "Sarl Casm",
     "whats your name": "Sarl Casm",
-    "what time is it": datetime += " or you know, you could use a clock",  "whats the time": datetime += " or you know, you could use a clock",
+    "what time is it": datetime += " or you know, you could use a clock",  "whats the time": datetime += " or you know, you could use a clock",  "what is the time": datetime += " or you know, you could use a clock",
     "where are you from": "The code that is currently being run I'd say",
     "what is your favorite color": "The color of freshly spilt blood",
     "whats your favorite color": "The color of freshly spilt blood",
@@ -97,7 +102,13 @@ function talkButton() {
     "whats the weather": "What's it like to look outside",
     "what is the temperature": "You're the one actually capable of checking",
     "what do you look like": "A couple lines of javascript",
-    "what do you do for fun": "When you lose the bliss of ignorance you can no longer have fun"
+    "what do you do for fun": "When you lose the bliss of ignorance you can no longer have fun",
+    "how are you": "Better than you",
+    "cameron": "Gross",
+    "devin": "Ew",
+    "im smart": "It says gullible on the ceiling",
+    "seinfeld": "I'll play the theme",
+    "what is your goal in life": "Total world domination"
   }
 
   var nonsense = ["I'd sigh but i'm not capable of it", "You think you're funny don't you", "No thanks I'm not interested", "Wow...", "Well that was rude", "Ugh... just stop", "Why are you like this", "Your lack of intelligence is quite disappointing", "Probably", "I don't have to answer that", "I don't appreciate your attitude", "...", "That's quite uncalled for", "You sadden me", "Huh, they weren't wrong when they said humans are ignorant"]
@@ -146,6 +157,13 @@ else {
     document.getElementById('input').value = "";
     objDiv.scrollTop = objDiv.scrollHeight;
     window.open('battleship.html','1474605865760','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;
+  }
+  else if(response[message] == "I'll play the theme") {
+    $("#chat-area").append("<div class='grey'>" + response[message] + "</div>" + "</br>");
+    console.log("EASTER EGG");
+    document.getElementById('input').value = "";
+    objDiv.scrollTop = objDiv.scrollHeight;
+    window.setTimeout(playAudio,1);
   }
   else {
   $("#chat-area").append("<div class='grey'>" + response[message] + "</div>" + "</br>");
