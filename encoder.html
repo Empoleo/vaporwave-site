@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito">
+    <link rel="stylesheet" href="encoder.css">
+
+    <title>
+        Encoder
+    </title>
+</head>
+
+<div id="textArea"></div>
+<div id="inputArea"><textarea id="inputText"></textarea></div>
+<div id="translationChoices">
+  <input type="radio" name="echo" id="echo" value="echo">Echo</br>
+  <input type="radio" name="caeser" id="caesar" value="caesar">Caesar cipher</br>
+  <input type="radio" name="heiro" id="heiro" value="heiro">Heiroglyphics</br>
+</div>
+
+<div id="translationArea"></div>
+<div id="translationInputArea"><textarea id="translationInputText"></textarea></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="encoder.js"></script>
+</body>
+</html>
