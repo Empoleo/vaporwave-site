@@ -68,6 +68,26 @@ $("#inputArea").keydown(function(e) {
     $("#textArea").append(" ");
     }
 
+    else if ($("input:checked").val() == "rune") {
+
+      var ex = document.getElementById('inputText').value;
+
+      var y = ex.length + 1;
+
+      var minus = x - 1;
+
+      for(var x = 0; x < y; x++) {
+        var minus = x - 1;
+        var z = ex.substring(minus, x);
+        console.log(z);
+        $("#textArea").append(runeConvert[z]);
+        document.getElementById('inputText').value = "";
+        //loops through conversion and outputs each character individually
+
+      }
+      $("#textArea").append(" ");
+      }
+
 
   //Loops user input through heiroglyphic converter
   else if ($("input:checked").val() == "heiro") {
@@ -147,7 +167,6 @@ var caeserConvert = {
   " ": " ",
 }
 
-//Because it's outputting html, this converter outputs images translating the users input
 
 var heiroConvert = {
   "a": "<img src='images/heiroglyphics/a.gif'>",
@@ -176,6 +195,37 @@ var heiroConvert = {
   "x": "<img src='images/heiroglyphics/x.gif'>",
   "y": "<img src='images/heiroglyphics/y.gif'>",
   "z": "<img src='images/heiroglyphics/z.gif'>",
+  " ": " ",
+}
+//Because it's outputting html, this converter outputs images translating the users input
+
+var runeConvert = {
+  "a": "<img src='images/runes/a.gif'>",
+  "b": "<img src='images/runes/b.gif'>",
+  "c": "<img src='images/runes/c.gif'>",
+  "d": "<img src='images/runes/d.gif'>",
+  "e": "<img src='images/runes/e.gif'>",
+  "f": "<img src='images/runes/f.gif'>",
+  "g": "<img src='images/runes/g.gif'>",
+  "h": "<img src='images/runes/h.gif'>",
+  "i": "<img src='images/runes/i.gif'>",
+  "j": "<img src='images/runes/j.gif'>",
+  "k": "<img src='images/runes/k.gif'>",
+  "l": "<img src='images/runes/l.gif'>",
+  "m": "<img src='images/runes/m.gif'>",
+  "n": "<img src='images/runes/n.gif'>",
+  "o": "<img src='images/runes/o.gif'>",
+  "p": "<img src='images/runes/p.gif'>",
+  "q": "<img src='images/runes/q.gif'>",
+  "r": "<img src='images/runes/r.gif'>",
+  "s": "<img src='images/runes/s.gif'>",
+  "t": "<img src='images/runes/t.gif'>",
+  "u": "<img src='images/runes/u.gif'>",
+  "v": "<img src='images/runes/v.gif'>",
+  "w": "<img src='images/runes/w.gif'>",
+  "x": "<img src='images/runes/x.gif'>",
+  "y": "<img src='images/runes/y.gif'>",
+  "z": "<img src='images/runes/z.gif'>",
   " ": " ",
 }
 
