@@ -1,35 +1,3 @@
-var shift = {
-  "a": "z",
-  "b": "a",
-  "c": "b",
-  "d": "c",
-  "e": "d",
-  "f": "e",
-  "g": "f",
-  "h": "g",
-  "i": "h",
-  "j": "i",
-  "k": "k",
-  "l": "l",
-  "m": "l",
-  "n": "m",
-  "o": "n",
-  "p": "o",
-  "q": "p",
-  "r": "z",
-  "s": "r",
-  "t": "s",
-  "u": "t",
-  "v": "u",
-  "w": "v",
-  "x": "w",
-  "y": "x",
-  "z": "y",
-  " ": " "
-}
-
-
-
 
 
 //Check for true radio buttons
@@ -59,7 +27,6 @@ $("#inputArea").keydown(function(e) {
     for(var x = 0; x < y; x++) {
       var minus = x - 1;
       var z = ex.substring(minus, x);
-      console.log(z);
       $("#textArea").append(caeserConvert[z]);
       document.getElementById('inputText').value = "";
       //loops through conversion and outputs each character individually
@@ -79,7 +46,6 @@ $("#inputArea").keydown(function(e) {
       for(var x = 0; x < y; x++) {
         var minus = x - 1;
         var z = ex.substring(minus, x);
-        console.log(z);
         $("#textArea").append(runeConvert[z]);
         document.getElementById('inputText').value = "";
         //loops through conversion and outputs each character individually
@@ -87,6 +53,28 @@ $("#inputArea").keydown(function(e) {
       }
       $("#textArea").append(" ");
       }
+
+      else if ($("input:checked").val() == "alph") {
+        var ex = document.getElementById('inputText').value;
+        var y = ex.length + 1;
+        var minus = x - 1;
+        for(var x = 0; x < y; x++) {
+          var minus = x - 1;
+          var z = ex.substring(minus, x);
+          $("#textArea").append(alphabetCipher[z]);
+          alphabetCipher[z] = "";
+          document.getElementById('inputText').value = "";
+          //loops through conversion and outputs each character individually
+
+        }
+        for(var x = 0; x < 26; x++) {
+          var translateVal = xTranslate[x];
+          $("#textArea").append(alphabetCipher[translateVal]);
+          //loops through conversion and outputs each character individually
+
+        }
+        $("#textArea").append(" ");
+        }
 
 
   //Loops user input through heiroglyphic converter
@@ -101,7 +89,6 @@ $("#inputArea").keydown(function(e) {
     for(var x = 0; x < y; x++) {
       var minus = x - 1;
       var z = ex.substring(minus, x);
-      console.log(z);
       $("#textArea").append(heiroConvert[z]);
 document.getElementById('inputText').value = "";
     }
@@ -109,7 +96,6 @@ document.getElementById('inputText').value = "";
     }
     };
   });
-
   $("#translationInputArea").keydown(function(e) {
     if(e.keyCode == 13) {
       var ex = document.getElementById('translationInputText').value;
@@ -120,23 +106,15 @@ document.getElementById('inputText').value = "";
       for(var x = 0; x < y; x++) {
         var minus = x - 1;
         var z = ex.substring(minus, x);
-        console.log(z);
         $("#translationArea").append(decodeConvertC[z]);
   document.getElementById('translationInputText').value = "";
 
 
       }
+      $("#translationArea").append(" ");
     }
   });
-
-
-
-
 //Converter objects used for input translation
-
-
-
-
 var caeserConvert = {
   "a": "z",
   "b": "a",
@@ -227,6 +205,64 @@ var runeConvert = {
   "y": "<img src='images/runes/y.gif'>",
   "z": "<img src='images/runes/z.gif'>",
   " ": " ",
+}
+
+var xTranslate = {
+  0: "a",
+  1: "b",
+  2: "c",
+  3: "d",
+  4: "e",
+  5: "f",
+  6: "g",
+  7: "h",
+  8: "i",
+  9: "j",
+  10: "k",
+  11: "l",
+  12: "m",
+  13: "n",
+  14: "o",
+  15: "p",
+  16: "q",
+  17: "r",
+  18: "s",
+  19: "t",
+  20: "u",
+  21: "v",
+  22: "w",
+  23: "x",
+  24: "y",
+  25: "z"
+}
+
+var alphabetCipher = {
+  "a": "a",
+  "b": "b",
+  "c": "c",
+  "d": "d",
+  "e": "e",
+  "f": "f",
+  "g": "g",
+  "h": "h",
+  "i": "i",
+  "j": "j",
+  "k": "k",
+  "l": "l",
+  "m": "m",
+  "n": "n",
+  "o": "o",
+  "p": "p",
+  "q": "q",
+  "r": "r",
+  "s": "s",
+  "t": "t",
+  "u": "u",
+  "v": "v",
+  "w": "w",
+  "x": "x",
+  "y": "y",
+  "z": "z"
 }
 
 var decodeConvertC = {
