@@ -108,7 +108,8 @@ document.getElementById('inputText').value = "";
       var minus = x - 1;
       for(var x = 0; x < y; x++) {
         var minus = x - 1;
-        var z = ex.substring(minus, x);
+        var q = ex.substring(minus, x);
+        var z = q.toLowerCase();
         $("#translationArea").append(decodeConvertC[z]);
   document.getElementById('translationInputText').value = "";
 
