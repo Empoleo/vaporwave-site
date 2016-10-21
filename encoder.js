@@ -26,7 +26,8 @@ $("#inputArea").keydown(function(e) {
 
     for(var x = 0; x < y; x++) {
       var minus = x - 1;
-      var z = ex.substring(minus, x);
+      var q = ex.substring(minus, x);
+      var z = q.toLowerCase();
       $("#textArea").append(caeserConvert[z]);
       document.getElementById('inputText').value = "";
       //loops through conversion and outputs each character individually
@@ -45,7 +46,8 @@ $("#inputArea").keydown(function(e) {
 
       for(var x = 0; x < y; x++) {
         var minus = x - 1;
-        var z = ex.substring(minus, x);
+        var q = ex.substring(minus, x);
+        var z = q.toLowerCase();
         $("#textArea").append(runeConvert[z]);
         document.getElementById('inputText').value = "";
         //loops through conversion and outputs each character individually
@@ -60,7 +62,8 @@ $("#inputArea").keydown(function(e) {
         var minus = x - 1;
         for(var x = 0; x < y; x++) {
           var minus = x - 1;
-          var z = ex.substring(minus, x);
+          var q = ex.substring(minus, x);
+          var z = q.toLowerCase();
           $("#textArea").append(alphabetCipher[z]);
           alphabetCipher2[z] = "";
           document.getElementById('inputText').value = "";
@@ -87,7 +90,8 @@ $("#inputArea").keydown(function(e) {
 
     for(var x = 0; x < y; x++) {
       var minus = x - 1;
-      var z = ex.substring(minus, x);
+      var q = ex.substring(minus, x);
+      var z = q.toLowerCase();
       $("#textArea").append(heiroConvert[z]);
 document.getElementById('inputText').value = "";
     }
