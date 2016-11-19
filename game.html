@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name=viewport content='width=600'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="game.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</head>
+<body>
+<svg width="100%" viewBox="0 0 1600 750" id="p">
+  <image name="numb" id="numb" x="700" y="375" width="100" height="200" href="rubbi rat.png">
+
+  </image>
+
+  <image x="500" y="50" width="100" height="100" href="crom.png" name="spag" id="spag">
+<animate id="spagA"attributeName="x" from="-100" to="1600" dur="8s" repeatCount="indefinite"/>
+  </image>
+
+  <image x="500" y="600" width="100" height="100" href="crom.png" name="spag" id="spago">
+<animate id="spagB" attributeName="x" from="-100" to="1600" dur="8s" repeatCount="indefinite"/>
+  </image>
+  <text id="chro" x="0" y="35" font-family="Verdana" font-size="30" >
+  Chromosomes Collected: 0
+</text>
+
+<rect id="end" x="400" y="150" width="800" height="450" fill="white" opacity="0"></rect>
+
+<text x="525" y="300" font-family="Verdana" font-size="30" id="qq" opacity="0">Filler</text>
+<text x="525" y="350" font-family="Verdana" font-size="30" id="wop" opacity="0">Filler</text>
+
+</svg>
+</body>
+    <script type="text/javascript" src="game.js"></script>
+</html>
