@@ -1,6 +1,8 @@
 var val = 700;
 var yval = 375;
 
+
+
 var foodEaten = 0;
 
 var timeStart = Date.now()
@@ -15,6 +17,11 @@ var bool = true;
 
 var tx = document.getElementById("qq");
 var a = document.getElementById("wop");
+
+function restart() {
+  Location.reload();
+}
+
 
 document.addEventListener("keydown", function(e) {
   var PlayX = Number(document.getElementById("numb").getAttribute("x"));
@@ -32,6 +39,13 @@ document.addEventListener("keydown", function(e) {
   var ran1 = Math.floor((Math.random() * 650) + 0);
 
   if(PlayX >= EneX - 100 && PlayX <= EneX + 100 && PlayY >= EneY - 100 && PlayY <= EneY + 100) {
+
+    var popo = document.getElementById("box");
+    popo.setAttribute("opacity", 1);
+
+    var ewok = document.getElementById("txt");
+    txt.setAttribute("opacity", 1);
+
     tx.innerHTML = "You Lost!";
     endcheck = 1;
     tx.setAttribute("opacity", 1);
@@ -75,6 +89,13 @@ endcheck = 1;
 tx.setAttribute("opacity", 1);
 var e = document.getElementById("end");
 e.setAttribute("opacity", 1);
+
+var popo = document.getElementById("box");
+popo.setAttribute("opacity", 1);
+
+var ewok = document.getElementById("txt");
+txt.setAttribute("opacity", 1);
+
 var y = document.getElementById("chro");
 y.setAttribute("opacity", 0);
 wop.setAttribute("opacity", 1)
@@ -123,6 +144,8 @@ wop.setAttribute("opacity", 1)
 
 }
 )
+
+
 
 setInterval(
 
