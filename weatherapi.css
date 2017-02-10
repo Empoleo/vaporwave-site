@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Slabo+27px');
+
+body {
+  background: #c4fcae;
+}
+
+#programcontainer {
+  width: 100%;
+  text-align: center;
+}
+
+#inner {
+  display: inline-block;
+}
+
+#weatherinfocontainer {
+  width: 500px;
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 24px;
+  padding: 20px;
+}
+
+#imagecontainer {
+  padding: 20px;
+}
+
+img {
+  border: 4px solid black;
+}
+
+#zipcode {
+  border: 3 none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px 10px;
+  width: 150px;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 10px;
+  height: 70px;
+  width: 180px;
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 24px;
+  background: #184a9b;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  text-shadow: 1px 1px #666;
+}
