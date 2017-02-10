@@ -8,7 +8,7 @@ var temp = data.current.temp_f;
     console.log(temp)
     if(temp <= 20) {
     document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
-    document.getElementById("imagecontainer").innerHTML = "<img src='images/freezing.png'></img>";
+    document.getElementById("imagecontainer").innerHTML = "<img src='images/freezing.jpg'></img>";
     }
     else if(temp <= 40) {
     document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
@@ -26,7 +26,7 @@ var temp = data.current.temp_f;
     document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
     document.getElementById("imagecontainer").innerHTML = "<img src='images/hot.jpg'></img>";
     }
-    
+
 }
 
 function makeRequest() {
