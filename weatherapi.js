@@ -26,7 +26,7 @@ var temp = data.current.temp_f;
     document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
     document.getElementById("imagecontainer").innerHTML = "<img src='images/hot.jpg'></img>";
     }
-
+    
 }
 
 function makeRequest() {
