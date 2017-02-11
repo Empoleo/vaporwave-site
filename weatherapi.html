@@ -8,8 +8,11 @@
     </title>
 </head>
 
-<body>
-  <div id="programcontainer"><center>
+<body id="color">
+  <div id="programcontainer"><div>
+      <img src="images/sun.png" id="sun"></img>
+      <img src="images/mun.png" id="mun"></img>
+      </div><center>
     <div id="inner">
       <input type="text" name="zipcode" id="zipcode"> <br>
       <button onclick="submit()">Weather Animal!</button>
@@ -18,7 +21,8 @@
       <div id="imagecontainer">
       </div>
     </div>
-      </center></div>
+      </center>
+    </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="weatherapi.js"></script>

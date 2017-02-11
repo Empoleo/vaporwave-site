@@ -1,30 +1,44 @@
 var key = "7514c7f2bd284a3084e165159170902"
 var weatherURL = ""
-
+var sun = document.getElementById("sun").style.opacity;
+var mun = document.getElementById("mun").style.opacity;
 
 function showAnimal(data) {
 var temp = data.current.temp_f;
     var condition = data.current.condition.text.toLowerCase();
-    console.log(temp)
-    if(temp <= 20) {
-    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
-    document.getElementById("imagecontainer").innerHTML = "<img src='images/freezing.jpg'></img>";
+    var time = data.current.is_day;
+    if(time == 1) {
+    document.getElementById("sun").style.opacity = 1;
+    document.getElementById("mun").style.opacity = 0;
     }
-    else if(temp <= 40) {
-    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
-    document.getElementById("imagecontainer").innerHTML = "<img src='images/cold.jpg'></img>";
+    else{
+    document.getElementById("sun").style.opacity = 0;
+    document.getElementById("mun").style.opacity = 1;
     }
-    else if(temp <= 60) {
-    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
-    document.getElementById("imagecontainer").innerHTML = "<img src='images/normal.jpg'></img>";
+    if(temp <= 25) {
+    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees fahrenheit, as for the condition: " + condition + ".";
+    document.getElementById("imagecontainer").innerHTML = "<img src='images/freezing.jpg' height='300' width='400'></img>";
+    document.getElementById("color").style.background = "#4842f4";
     }
-    else if(temp <= 80) {
-    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
-    document.getElementById("imagecontainer").innerHTML = "<img src='images/warm.jpg'></img>";
+    else if(temp <= 45) {
+    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees fahrenheit, as for the condition: " + condition + ".";
+    document.getElementById("imagecontainer").innerHTML = "<img src='images/cold.jpg' height='350' width='400'></img>";
+    document.getElementById("color").style.background = "#42f4e8";
+    }
+    else if(temp <= 65) {
+    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees fahrenheit, as for the condition: " + condition + ".";
+    document.getElementById("imagecontainer").innerHTML = "<img src='images/normal.jpg' height='300' width='400'></img>";
+    document.getElementById("color").style.background = "#42f47a";
+    }
+    else if(temp <= 85) {
+    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees fahrenheit, as for the condition: " + condition + ".";
+    document.getElementById("imagecontainer").innerHTML = "<img src='images/warm.jpg' height='300' width='400'></img>";
+    document.getElementById("color").style.background = "orange";
     }
     else {
-    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees, as for the condition: " + condition + ".";
-    document.getElementById("imagecontainer").innerHTML = "<img src='images/hot.jpg'></img>";
+    document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees fahrenheit, as for the condition: " + condition + ".";
+    document.getElementById("imagecontainer").innerHTML = "<img src='images/hot.jpg' height='300' width='400'></img>";
+    document.getElementById("color").style.background = "red";
     }
     
 }

@@ -2,6 +2,7 @@
 
 body {
   background: #c4fcae;
+    position: relative;
 }
 
 #programcontainer {
@@ -29,13 +30,26 @@ img {
 }
 
 #zipcode {
-  border: 3 none;
   background: transparent;
   font-size: 20px;
   font-weight: bold;
   margin: 10px;
+  border: solid 2px grey;
+  transition: box-shadow 0.3s, border 0.3s;
   padding: 10px 10px;
   width: 150px;
+  display: block;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  padding: 10px;
+
+}
+#zipcode:focus {
+box-shadow: 0 0 5px 1px #969696;
+border: solid 2px black;
 }
 
 button {
@@ -53,4 +67,23 @@ button {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   text-shadow: 1px 1px #666;
+}
+#sun {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+height: 180px;
+    border: none;
+    opacity: 0;
+}
+
+#mun {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+height: 120px;
+    border: none;
+    opacity: 0;
 }
