@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="weatherapi.css">
+    <link rel="shortcut icon" type="image/x-icon" href="images/face.jpg" />
+    <title>
+        Weather Animals
+    </title>
+</head>
+
+<body id="color">
+  <div id="programcontainer"><div>
+      <img src="images/sun.png" id="sun"></img>
+      <img src="images/mun.png" id="mun"></img>
+      </div><center>
+    <div id="info">
+        <b><p>Currently Loaded Location:</p></b>
+        
+    <p id="loca"></p>
+    </div>
+    <div id="extra">
+        <b><p>Current information:</p></b>
+        
+    <p id="con"></p>
+    </div>
+    <div id="inner">
+      <input type="text" name="zipcode" id="zipcode"> <br>
+      <button onclick="submit()">Weather Animal!</button>
+      <div id="weatherinfocontainer">
+      </div>
+      <div id="imagecontainer">
+      </div>
+    </div>
+      </center>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="weatherapi.js"></script>
+</body>
+</html>
