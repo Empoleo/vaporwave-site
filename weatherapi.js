@@ -4,9 +4,19 @@ var sun = document.getElementById("sun").style.opacity;
 var mun = document.getElementById("mun").style.opacity;
 
 function showAnimal(data) {
-var temp = data.current.temp_f;
-    var condition = data.current.condition.text.toLowerCase();
-    var time = data.current.is_day;
+    var total = data
+var temp = total.current.temp_f;
+    var condition = total.current.condition.text.toLowerCase();
+    var time = total.current.is_day;
+    var name = total.location.name
+    var region = total.location.region
+    var country = total.location.country
+    document.getElementById("loca").innerHTML = name + ", " + region + ", " + country;
+    var humidity = total.current.humidity
+    var mph = total.current.wind_mph
+    var localtime = total.location.localtime
+    var feel = total.current.feelslike_f
+    document.getElementById("con").innerHTML = "Wind: " + mph + " mph</br>" + "Humidity: " + humidity + "%</br>" + "Time: " + localtime + "</br>Temperature feel: " + feel + " degrees fahrenheit";
     if(time == 1) {
     document.getElementById("sun").style.opacity = 1;
     document.getElementById("mun").style.opacity = 0;
@@ -22,7 +32,7 @@ var temp = data.current.temp_f;
     }
     else if(temp <= 45) {
     document.getElementById("weatherinfocontainer").innerHTML = "It is " + temp + " degrees fahrenheit, as for the condition: " + condition + ".";
-    document.getElementById("imagecontainer").innerHTML = "<img src='images/cold.jpg' height='350' width='400'></img>";
+    document.getElementById("imagecontainer").innerHTML = "<img src='images/cold.jpg' height='320' width='380'></img>";
     document.getElementById("color").style.background = "#42f4e8";
     }
     else if(temp <= 65) {

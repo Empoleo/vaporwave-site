@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 body {
   background: #c4fcae;
@@ -16,7 +17,7 @@ body {
 
 #weatherinfocontainer {
   width: 500px;
-  font-family: 'Love Ya Like A Sister', cursive;
+  font-family: 'Slabo 27px', serif;
   font-size: 24px;
   padding: 20px;
 }
@@ -55,9 +56,9 @@ border: solid 2px black;
 button {
   margin: 10px;
   padding: 10px 10px;
-  height: 70px;
+  height: 80px;
   width: 180px;
-  font-family: 'Love Ya Like A Sister', cursive;
+  font-family: 'PT Sans', sans-serif;
   font-size: 24px;
   background: #184a9b;
   border: none;
@@ -76,6 +77,28 @@ button {
 height: 180px;
     border: none;
     opacity: 0;
+}
+
+#info {
+    position: fixed;
+    font-size: 20px;
+left: 0;
+bottom: 0;
+    width: 25%;
+height: 35%;
+    border:3px solid black;
+      font-family: 'PT Sans', sans-serif;
+}
+
+#extra {
+    position: fixed;
+    font-size: 20px;
+right: 0;
+bottom: 0;
+    width: 25%;
+height: 35%;
+    border:3px solid black;
+      font-family: 'PT Sans', sans-serif;
 }
 
 #mun {
