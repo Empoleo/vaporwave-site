@@ -1,11 +1,12 @@
 var monURL = ""
-var corURL = ""
+
 
 function showInfo(data) {
     document.getElementById("list").innerHTML = ""
     document.getElementById("list").innerHTML += "<h1 id='base'>Your Current Base: </h1>"
     var total = data
-    total.rates[document.getElementById("input").value] = 1
+    total.rates[document.getElementById("input").value.toUpperCase()] = 1
+    //console.log(total.rates[total.rates["USD"]])
     document.getElementById("base").innerHTML = "Your Current Base: " + data.base;
     document.getElementById("list").innerHTML += "<li><a href='#'>"+"AUD: "+total.rates["AUD"]+"</a></li>"
     document.getElementById("list").innerHTML += "<li><a href='#'>"+"BGN: "+total.rates["BGN"]+"</a></li>"
@@ -52,7 +53,6 @@ function makeRequest() {
 function submit() {
 var input = document.getElementById("input").value;
 monURL = "http://api.fixer.io/latest?base=" + input;
-corURL = createCORSRequest('GET', monURL);
 makeRequest();
 }
 
