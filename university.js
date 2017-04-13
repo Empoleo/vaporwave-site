@@ -78,7 +78,7 @@ function calculate() {
 input = document.getElementById("firstval").value;
      e = document.getElementById("sel");
  calc = e.options[e.selectedIndex].value;
-monURL = "http://api.fixer.io/latest?base=" + calc;
+monURL = "https://api.fixer.io/latest?base=" + calc;
     console.log(calc)
 makeCalculations();
 }
