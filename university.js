@@ -52,7 +52,7 @@ function makeRequest() {
 
 function submit() {
 var input = document.getElementById("input").value;
-monURL = "http://api.fixer.io/latest?base=" + input;
+monURL = "https://api.fixer.io/latest?base=" + input;
 makeRequest();
 }
 
