@@ -27,6 +27,7 @@ footer {
     height: 10%;
     width: 100%;
     overflow:hidden;
+    margin-top: 50px; 
 }
 
 nav {
@@ -41,6 +42,7 @@ nav {
 nav ul {
     list-style-type: none;
     padding: 0;
+    height: 20%;
 }
    
 nav ul a {
@@ -51,6 +53,8 @@ article {
     margin-left: 170px;
     border-left: 1px solid gray;
     padding: 1em;
+    width:60%;
+    
 }
 
 #search {
@@ -64,12 +68,26 @@ height: 35%;
       font-family: 'PT Sans', sans-serif;
 }
 
+#explain {
+    position: fixed;
+    font-size: 20px;
+right: 0;
+bottom: 36%;
+    width: 25%;
+height: 30%;
+    border:5px solid black;
+      font-family: 'PT Sans', sans-serif;
+    overflow-y:scroll;
+}
+
 #wrapper {
     width: 100%;
+    
     
 }
 #wrapper div {
     display: inline-block;
+    
     height: 200px;
     vertical-align: top;
     width: 200px;

@@ -7,12 +7,12 @@
     </head>
     <body>
         <header>
-   <h1>TMP</h1>
+   <h1>Currency Conversion</h1>
 </header>
   
 <nav>
   <ul id="list">
-      <h1 id="base">Your Current Base: </h1>
+      <h1 id="base">Your Selected Currency Info: </h1>
       
     <!--<li><a href="#">London</a></li>-->
   </ul>
@@ -88,7 +88,7 @@
 <option value="EUR">EUR</option>
               </select></center></div>
       
-    <div><center><h1>Result:</h1><button onclick="calculate()">Calculate</button></br><p id="result"></p></[> </center></div>
+    <div><center><h1>Result:</h1><button onclick="calculate()">Calculate</button></br><p id="result"></p> </center></div>
       
 </section>
   
@@ -96,12 +96,22 @@
 
         <div id="search">
             <center>
-        <b><p>Search For A Base:</p></b>
+        <b><p>Search For A Currency:</p></b>
             
             <input onKeyDown="if(event.keyCode==13) submit();" id="input">    </input></br>
       <button onclick="submit()">     Go!</button> 
         </center>
         </div>
+
+<div id="explain">
+            <center>
+                <b><p>Information on selected currency:</p></b></br><p id="explanation"></p>
+                
+            
+        
+        </center>
+        </div>
+
         <footer><br><p>Charles Dowell's Project</p></footer>
         
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
