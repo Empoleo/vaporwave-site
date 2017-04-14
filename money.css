@@ -187,7 +187,7 @@ bottom: 0;
     width: 25%;
 height: 35%;
     border:5px solid black;
-      font-family: 'PT Sans', sans-serif;
+      font-family: 'Slabo 27px', serif;
 }
 
 #explain {
@@ -196,9 +196,9 @@ height: 35%;
 right: 0;
 bottom: 36%;
     width: 25%;
-height: 30%;
+height: 25%;
     border:5px solid black;
-      font-family: 'PT Sans', sans-serif;
+     font-family: 'Slabo 27px', serif;
     overflow-y:scroll;
 }
 

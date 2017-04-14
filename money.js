@@ -1,6 +1,5 @@
 var monURL = ""
-
-
+var audio = new Audio('cash.mp3');
 
 function showInfo(data) {
     document.getElementById("list").innerHTML = ""
@@ -9,38 +8,38 @@ function showInfo(data) {
     total.rates[document.getElementById("input").value.toUpperCase()] = 1
     //console.log(total.rates[total.rates["USD"]])
     document.getElementById("base").innerHTML = "Your Current Base: " + data.base;
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"AUD: "+total.rates["AUD"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"BGN: "+total.rates["BGN"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"BRL: "+total.rates["BRL"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"CAD: "+total.rates["CAD"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"CHF: "+total.rates["CHF"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"CNY: "+total.rates["CNY"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"CZK: "+total.rates["CZK"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"DKK: "+total.rates["DKK"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"GPB: "+total.rates["GBP"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"HKD: "+total.rates["HKD"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"HRK: "+total.rates["HRK"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"HUF: "+total.rates["HUF"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"IDR: "+total.rates["IDR"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"ILS: "+total.rates["ILS"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"INR: "+total.rates["INR"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"JPY: "+total.rates["JPY"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"KRW: "+total.rates["KRW"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"MXN: "+total.rates["MXN"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"MYR: "+total.rates["MYR"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"NOK: "+total.rates["NOK"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"NZD: "+total.rates["NZD"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"PHP: "+total.rates["PHP"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"PLN: "+total.rates["PLN"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"RON: "+total.rates["RON"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"RUB: "+total.rates["RUB"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"SEK: "+total.rates["SEK"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"SGD: "+total.rates["SGD"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"THB: "+total.rates["THB"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"TRY: "+total.rates["TRY"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"USD: "+total.rates["USD"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"ZAR: "+total.rates["ZAR"]+"</a></li>"
-    document.getElementById("list").innerHTML += "<li><a href='#'>"+"EUR: "+total.rates["EUR"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/australia.png' height='12' width='17'></img><a href='#'>"+" AUD: "+total.rates["AUD"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/bulgaria.png' height='12' width='17'></img><a href='#'>"+" BGN: "+total.rates["BGN"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/brazil.png' height='12' width='17'></img><a href='#'>"+" BRL: "+total.rates["BRL"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/canada.png' height='12' width='17'></img><a href='#'>"+" CAD: "+total.rates["CAD"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/switzerland.png' height='12' width='17'></img><a href='#'>"+" CHF: "+total.rates["CHF"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/china.png' height='12' width='17'></img><a href='#'>"+" CNY: "+total.rates["CNY"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/czech.png' height='12' width='17'></img><a href='#'>"+" CZK: "+total.rates["CZK"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/denmark.png' height='12' width='17'></img><a href='#'>"+" DKK: "+total.rates["DKK"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/greatbritain.png' height='12' width='17'></img><a href='#'>"+" GPB: "+total.rates["GBP"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/hongkong.png' height='12' width='17'></img><a href='#'>"+" HKD: "+total.rates["HKD"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/croatia.png' height='12' width='17'></img><a href='#'>"+" HRK: "+total.rates["HRK"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/hungary.png' height='12' width='17'></img><a href='#'>"+" HUF: "+total.rates["HUF"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/indonesia.png' height='12' width='17'></img><a href='#'>"+" IDR: "+total.rates["IDR"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/israel.png' height='12' width='17'></img><a href='#'>"+" ILS: "+total.rates["ILS"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/india.png' height='12' width='17'></img><a href='#'>"+" INR: "+total.rates["INR"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/japan.png' height='12' width='17'></img><a href='#'>"+" JPY: "+total.rates["JPY"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/southkorea.png' height='12' width='17'></img><a href='#'>"+" KRW: "+total.rates["KRW"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/mexico.png' height='12' width='17'></img><a href='#'>"+" MXN: "+total.rates["MXN"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/malaysia.png' height='12' width='17'></img><a href='#'>"+" MYR: "+total.rates["MYR"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/norway.png' height='12' width='17'></img><a href='#'>"+" NOK: "+total.rates["NOK"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/phillippines.png' height='12' width='17'></img><a href='#'>"+" NZD: "+total.rates["NZD"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/phillippines.png' height='12' width='17'></img><a href='#'>"+" PHP: "+total.rates["PHP"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/poland.png' height='12' width='17'></img><a href='#'>"+" PLN: "+total.rates["PLN"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/romania.png' height='12' width='17'></img><a href='#'>"+" RON: "+total.rates["RON"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/russia.png' height='12' width='17'></img><a href='#'>"+" RUB: "+total.rates["RUB"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/sweden.png' height='12' width='17'></img><a href='#'>"+" SEK: "+total.rates["SEK"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/singapore.png' height='12' width='17'></img><a href='#'>"+" SGD: "+total.rates["SGD"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/thai.png' height='12' width='17'></img><a href='#'>"+" THB: "+total.rates["THB"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/turkey.png' height='12' width='17'></img><a href='#'>"+" TRY: "+total.rates["TRY"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/usa.png' height='12' width='17'></img><a href='#'>"+" USD: "+total.rates["USD"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/southafrica.png' height='12' width='17'></img><a href='#'>"+" ZAR: "+total.rates["ZAR"]+"</a></li>"
+    document.getElementById("list").innerHTML += "<li><img src='images/euro.png' height='12' width='17'></img><a href='#'>"+" EUR: "+total.rates["EUR"]+"</a></li>"
 }
 
 
@@ -53,8 +52,9 @@ var ul = document.getElementById('list');
 ul.onclick = function(event) {
     var target = getEventTarget(event);
     var result = target.innerHTML
-    result = result.substring(0,3);
+    result = result.substring(1,4);
     explain(result)
+    console.log(result)
     
 };
 
@@ -120,7 +120,7 @@ if(para == "MYR"){
 document.getElementById("explanation").innerHTML = 'MYR, or Malaysian ringgit, is the currency of Malaysia.'
 }
         if(para == "NOK"){
-document.getElementById("explanation").innerHTML = 'NOK, or Norwegian krone, is the currency of  currency of Norway and its dependent territories.'
+document.getElementById("explanation").innerHTML = 'NOK, or Norwegian krone, is the currency of Norway and its dependent territories.'
 }
 if(para == "NZD"){
 document.getElementById("explanation").innerHTML = 'NZD, or New Zealand dollar, is the currency and legal tender of New Zealand, the Cook Islands, Niue, the Ross Dependency, Tokelau, and a British territory, the Pitcairn Islands.'
@@ -201,7 +201,12 @@ input = document.getElementById("firstval").value;
  calc = e.options[e.selectedIndex].value;
 monURL = "https://api.fixer.io/latest?base=" + calc;
     console.log(calc)
+audio.play();
 makeCalculations();
+}
+
+function round(num) {
+    return Math.ceil(num * 100) / 100;
 }
 
 function showCalculations(data) {
@@ -211,7 +216,7 @@ function showCalculations(data) {
     equal = {calc2: 1}
     console.log(calc2)
 if(calc != calc2){
-document.getElementById("result").innerHTML = input*data.rates[calc2];
+document.getElementById("result").innerHTML = round(input*data.rates[calc2]);
 }
     else{
     document.getElementById("result").innerHTML = input;
