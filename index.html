@@ -1,0 +1,160 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="money.css"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="shortcut icon" href="money.png" />
+        <title>Currency</title>
+    </head>
+    <body>
+        <div class="test" id="hed">
+   <h1>Currency Conversion</h1>
+</div>
+  <div class="endme">
+<nav>
+  <ul id="list">
+      <h1 id="base">Click one to know more:</h1>
+      
+<li><a href='#'>AUD: </a></li>
+<li><a href='#'>BGN: </a></li>
+<li><a href='#'>BRL: </a></li>
+<li><a href='#'>CAD: </a></li>
+<li><a href='#'>CHF: </a></li>
+<li><a href='#'>CNY: </a></li>
+<li><a href='#'>CZK: </a></li>
+<li><a href='#'>DKK: </a></li>
+<li><a href='#'>GPB: </a></li>
+<li><a href='#'>HKD: </a></li>
+<li><a href='#'>HRK: </a></li>
+<li><a href='#'>HUF: </a></li>
+<li><a href='#'>IDR: </a></li>
+<li><a href='#'>ILS: </a></li>
+<li><a href='#'>INR: </a></li>
+<li><a href='#'>JPY: </a></li>
+<li><a href='#'>KRW: </a></li>
+<li><a href='#'>MXN: </a></li>
+<li><a href='#'>MYR: </a></li>
+<li><a href='#'>NOK: </a></li>
+<li><a href='#'>NZD: </a></li>
+<li><a href='#'>PHP: </a></li>
+<li><a href='#'>PLN: </a></li>
+<li><a href='#'>RON: </a></li>
+<li><a href='#'>RUB: </a></li>
+<li><a href='#'>SEK: </a></li>
+<li><a href='#'>SGD: </a></li>
+<li><a href='#'>THB: </a></li>
+<li><a href='#'>TRY: </a></li>
+<li><a href='#'>USD: </a></li>
+<li><a href='#'>ZAR: </a></li>
+<li><a href='#'>EUR: </a></li>
+  </ul>
+</nav>
+      </div>
+
+<article>
+  <section id="wrapper">
+    <div><center><h1>Convert This Currency</h1>
+        <label>
+<select class="select" id="sel"><option value="AUD">AUD</option>
+<option value="BGN">BGN</option>
+<option value="BRL">BRL</option>
+<option value="CAD">CAD</option>
+<option value="CHF">CHF</option>
+<option value="CNY">CNY</option>
+<option value="CZK">CZK</option>
+<option value="DKK">DKK</option>
+<option value="GBP">GBP</option>
+<option value="HKD">HKD</option>
+<option value="HRK">HRK</option>
+<option value="HUF">HRK</option>
+<option value="IDR">IDR</option>
+<option value="ILS">ILS</option>
+<option value="INR">INR</option>
+<option value="JPY">JPY</option>
+<option value="KRW">KRW</option>
+<option value="MXN">MXN</option>
+<option value="MYR">MYR</option>
+<option value="NOK">NOK</option>
+<option value="NZD">NZD</option>
+<option value="PHP">PHP</option>
+<option value="PLN">PLN</option>
+<option value="RON">RON</option>
+<option value="RUB">RUB</option>
+<option value="SEK">SEK</option>
+<option value="SGD">SGD</option>
+<option value="THB">THB</option>
+<option value="TRY">TRY</option>
+<option value="USD">USD</option>
+<option value="ZAR">ZAR</option>
+<option value="EUR">EUR</option>
+</select>
+        </label>
+<p>Amount:</p></br><input id="firstval"></center></div>
+      
+          <div><center><h1>To This</h1>
+<label>
+<select class="select" id="sel2"><option value="AUD">AUD</option>
+<option value="BGN">BGN</option>
+<option value="BRL">BRL</option>
+<option value="CAD">CAD</option>
+<option value="CHF">CHF</option>
+<option value="CNY">CNY</option>
+<option value="CZK">CZK</option>
+<option value="DKK">DKK</option>
+<option value="GBP">GBP</option>
+<option value="HKD">HKD</option>
+<option value="HRK">HRK</option>
+<option value="HUF">HRK</option>
+<option value="IDR">IDR</option>
+<option value="ILS">ILS</option>
+<option value="INR">INR</option>
+<option value="JPY">JPY</option>
+<option value="KRW">KRW</option>
+<option value="MXN">MXN</option>
+<option value="MYR">MYR</option>
+<option value="NOK">NOK</option>
+<option value="NZD">NZD</option>
+<option value="PHP">PHP</option>
+<option value="PLN">PLN</option>
+<option value="RON">RON</option>
+<option value="RUB">RUB</option>
+<option value="SEK">SEK</option>
+<option value="SGD">SGD</option>
+<option value="THB">THB</option>
+<option value="TRY">TRY</option>
+<option value="USD">USD</option>
+<option value="ZAR">ZAR</option>
+<option value="EUR">EUR</option>
+</label>
+</select></center></div>
+      
+    <div><center><h1>Result:</h1><button class="button" onclick="calculate()">Calculate</button></br><p id="result"></p> </center></div>
+      
+</section>
+  
+</article>
+
+        <div id="search">
+            <center>
+        <b><p>Search For A Currency:</p></b>
+            
+            <input onKeyDown="if(event.keyCode==13) submit();" id="input">    </input></br>
+      <button class="button" onclick="submit()">     Go!</button> 
+        </center>
+        </div>
+
+<div id="explain">
+            <center>
+                <b><p>Information on selected currency:</p></b></br><p id="explanation"></p>
+                
+            
+        
+        </center>
+        </div>
+
+        <footer><br><p>Charles Dowell's Project</p></footer>
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="money.js"></script>
+    </body>
+  </html>
