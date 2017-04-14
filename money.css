@@ -3,16 +3,23 @@ div.container {
     border: 1px solid gray;
 }
 
-html {
-min-height: 100%;
-}
+html { 
+height: 100%;
+    width: 100%;
+} 
 
-header {
-    padding: 1em;
+.test {
+    padding: 1.2%;
     color: white;
     background-color: black;
     clear: left;
     text-align: center;
+max-height: 100%;
+    z-index: 10;
+}
+
+#hed {
+    height: 1%;
 }
 
 
@@ -26,23 +33,40 @@ footer {
     bottom: 0;
     height: 10%;
     width: 100%;
+    
     overflow:hidden;
     margin-top: 50px; 
 }
 
+.endme{
+
+}
+
 nav {
-    float: left;
+
     max-width: 160px;
     margin: 0;
-    height: 400px;
+    
+    position:fixed;
+  top:18.1%;
+  left:0;
+
+  /***********/
+
+  width: 20%;
+  height: 67.1%;
     padding: 1em;
+
+min-height: 300px; /* 100px x3 = 300 */
+    overflow:scroll;
+
     overflow-y:scroll;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
-    height: 20%;
+
 }
    
 nav ul a {
@@ -51,6 +75,7 @@ nav ul a {
 
 article {
     margin-left: 170px;
+    top:0;
     border-left: 1px solid gray;
     padding: 1em;
     width:60%;
@@ -81,8 +106,9 @@ height: 30%;
 }
 
 #wrapper {
-    width: 100%;
-    
+    width: 50%;
+    white-space: nowrap;
+        
     
 }
 #wrapper div {

@@ -61,8 +61,8 @@ function explain(para) {
         if(para == "AUD"){
 document.getElementById("explanation").innerHTML = 'AUD, or Australian dollar, is the currency of the Commonwealth of Australia.'
 }
-if(para == "BGV"){
-document.getElementById("explanation").innerHTML = 'BGV, or Bulgarian lev, is the currency of Bulgaria.'
+if(para == "BGN"){
+document.getElementById("explanation").innerHTML = 'BGN, or Bulgarian lev, is the currency of Bulgaria.'
 }
 if(para == "ZAR"){
 document.getElementById("explanation").innerHTML = 'ZAR, or South African rand, is the currency of South Africa.'
