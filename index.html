@@ -13,7 +13,7 @@
   <div class="endme">
 <nav>
   <ul id="list">
-      <h1 id="base">Search for a currency, or click to know more:</h1>
+      <h1 id="base">Click one to know more:</h1>
       
 <li><a href='#'>AUD: </a></li>
 <li><a href='#'>BGN: </a></li>
@@ -53,7 +53,9 @@
 
 <article>
   <section id="wrapper">
-    <div><center><h1>Convert This Currency</h1><select id="sel"><option value="AUD">AUD</option>
+    <div><center><h1>Convert This Currency</h1>
+        <label>
+<select class="select" id="sel"><option value="AUD">AUD</option>
 <option value="BGN">BGN</option>
 <option value="BRL">BRL</option>
 <option value="CAD">CAD</option>
@@ -85,9 +87,13 @@
 <option value="USD">USD</option>
 <option value="ZAR">ZAR</option>
 <option value="EUR">EUR</option>
-        </select><p>Amount:</p></br><input id="firstval"></center></div>
+</select>
+        </label>
+<p>Amount:</p></br><input id="firstval"></center></div>
       
-          <div><center><h1>To This</h1><select id="sel2"><option value="AUD">AUD</option>
+          <div><center><h1>To This</h1>
+<label>
+<select class="select" id="sel2"><option value="AUD">AUD</option>
 <option value="BGN">BGN</option>
 <option value="BRL">BRL</option>
 <option value="CAD">CAD</option>
@@ -119,9 +125,10 @@
 <option value="USD">USD</option>
 <option value="ZAR">ZAR</option>
 <option value="EUR">EUR</option>
-              </select></center></div>
+</label>
+</select></center></div>
       
-    <div><center><h1>Result:</h1><button onclick="calculate()">Calculate</button></br><p id="result"></p> </center></div>
+    <div><center><h1>Result:</h1><button class="button" onclick="calculate()">Calculate</button></br><p id="result"></p> </center></div>
       
 </section>
   
@@ -132,7 +139,7 @@
         <b><p>Search For A Currency:</p></b>
             
             <input onKeyDown="if(event.keyCode==13) submit();" id="input">    </input></br>
-      <button onclick="submit()">     Go!</button> 
+      <button class="button" onclick="submit()">     Go!</button> 
         </center>
         </div>
 

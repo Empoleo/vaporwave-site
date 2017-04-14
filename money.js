@@ -1,6 +1,7 @@
 var monURL = ""
 
 
+
 function showInfo(data) {
     document.getElementById("list").innerHTML = ""
     document.getElementById("list").innerHTML += "<h1 id='base'>Your Current Base: </h1>"
