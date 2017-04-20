@@ -14,6 +14,8 @@
 <nav>
   <ul id="list">
       <h1 id="base">Click one to know more:</h1>
+
+
       
 <li><img src='images/australia.png' height='12' width='17'></img><a href='#'> AUD: </a></li>
 <li><img src='images/bulgaria.png' height='12' width='17'></img><a href='#'> BGN: </a></li>
@@ -89,7 +91,7 @@
 </select>
         </label>
 <p>Amount:</p></br><input onKeyDown="if(event.keyCode==13) calculate();" id="firstval"></center></div>
-      
+
           <div><center><h1>To This</h1>
 <label>
 <select class="select" id="sel2"><option value="AUD">AUD</option>
@@ -125,33 +127,33 @@
 <option value="EUR">EUR</option>
 </label>
 </select></center></div>
-      
+
     <div><center><h1>Result:</h1><button class="button" onclick="calculate()">Calculate</button></br><p id="result"></p> </center></div>
-      
+
 </section>
-  
+
 </article>
 
         <div id="search">
             <center>
         <b><p>Search for a currency:</p></b>
-            
+
             <input onKeyDown="if(event.keyCode==13) submit();" id="input">    </input></br>
-      <button class="button" onclick="submit()">     Go!</button> 
+      <button class="button" onclick="submit()">     Go!</button>
         </center>
         </div>
 
 <div id="explain">
             <center>
                 <b><p>Information on selected currency:</p></b><p id="explanation"></p>
-                
-            
-        
+
+
+
         </center>
         </div>
 
         <footer><br><p>Charles Dowell's Project</p></footer>
-        
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="money.js"></script>
     </body>
