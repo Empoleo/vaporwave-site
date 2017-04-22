@@ -1,3 +1,4 @@
 svg {
-background-color: skyblue;
+background-image: url("sky.png");
+background-size: 100%;
 }

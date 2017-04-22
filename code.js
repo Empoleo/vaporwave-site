@@ -1,6 +1,7 @@
 var bulletArray = [];
 var values = [];
 var jets = [];
+var drops = [];
 
 var gameOver = false;
 var score = 0
@@ -33,13 +34,15 @@ function gameLoop() {
 
 function drawEverything() {
     if(gameOver == false) {
+        drawDrops()
     drawJets()
-    checkCollisionsMissiles()
 drawShot()
+checkDrops()
+checkCollisionsShots()
 requestAnimationFrame(drawEverything)
 }
     else{
-    makeText("You Have Failed.", 150, 250, 100, "sans-serif", "white", 1)
+    makeText("You Have Failed.", 145, 250, 100, "sans-serif", "white", 1)
     }
 }
 
@@ -52,7 +55,7 @@ var turn = 0;
 function turnLeft() {
     if(turn > -50) {
     var gun = document.getElementById("gun");
-    turn -= 1.2;
+    turn -= 1.5;
     gun.setAttribute("transform", "rotate(" + turn + ",500,488)");
 
     }
@@ -61,7 +64,7 @@ function turnLeft() {
 function turnRight() {
     if(turn < 50) {
     var gun = document.getElementById("gun");
-    turn += 1.2;
+    turn += 1.5;
     gun.setAttribute("transform", "rotate(" + turn + ",500,488)");
 
     }
@@ -96,7 +99,7 @@ values.push(value)
 
 function drawShot() {
 for(var i = 0; i < bulletArray.length; i++) {
-    if(getY(bulletArray[i])>0){
+    if(getY(bulletArray[i])>0 && getX(bulletArray[i])<1000){
 move(bulletArray[i],Math.cos(values[i])*7,Math.sin(values[i])*7)
 
     }
@@ -111,11 +114,13 @@ move(bulletArray[i],Math.cos(values[i])*7,Math.sin(values[i])*7)
 function makeJets() {
 var jet = makeImage("plane.png",-100,random(5,350),80,40,1)
 jets.push(jet)
-setTimeout(makeJets,1500)
+setTimeout(makeJets,random(500,2000))
 }
 
 function drawJets() {
 for(var i = 0; i < jets.length;i++) {
+
+move(jets[i],6,0)
     if(getX(jets[i])>1100) {
         lives--;
         removeElement(livesText)
@@ -125,16 +130,15 @@ for(var i = 0; i < jets.length;i++) {
         }
     removeArrayElement(jets, i)
     }
-move(jets[i],6,0)
 }
 }
 
-function checkCollisionsMissiles() {
+function checkCollisionsShots() {
     for (var i = 0; i < bulletArray.length; i++) {
     for (var j = 0; j < jets.length; j++) {
         for (var z = 0; z < values.length; z++) {
-        j
-          if (jets[j] != undefined && bulletArray[i] != undefined || values[z] != undefined) {  
+        
+          if (jets[j] != undefined && bulletArray[i] != undefined && values[z] != undefined) {  
           if (collide(bulletArray[i], jets[j], 0, -20) == true) {
                
                 drawExplosion(getX(bulletArray[i]),getY(bulletArray[i]))
@@ -143,6 +147,7 @@ function checkCollisionsMissiles() {
                 removeArrayElement(jets, j)
                 i++;
                 j++;
+              z++;
                 score++;
                 removeElement(scoreText)
                 scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
@@ -154,6 +159,49 @@ function checkCollisionsMissiles() {
         }
     }
 
+function checkDrops() {
+    for (var i = 0; i < bulletArray.length; i++) {
+    for (var p = 0; p < drops.length; p++) {
+        for (var z = 0; z < values.length; z++) {
+        
+          if (drops[p] != undefined && bulletArray[i] != undefined && values[z] != undefined) {  
+          if (collide(bulletArray[i], drops[p], 0, -20) == true) {
+                removeArrayElement(bulletArray, i)
+                removeArrayElement(drops, p)
+                removeArrayElement(values, z)
+                i++;
+                p++;
+              z++;
+                lives++;
+                removeElement(livesText)
+                livesText = makeText("Lives: "+lives, 800, 50, 25, "sans-serif", "white", 1)
+                score++;
+                removeElement(scoreText)
+                scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
+          }
+          
+            
+        }
+        }
+    }
+        }
+    }
+
+function makeDrops() {
+var drop = makeImage("supply.png",random(0,500),-100,60,60,1)
+drops.push(drop)
+setTimeout(makeDrops,4000)
+}
+
+function drawDrops() {
+for(var i = 0; i < drops.length;i++) {
+
+move(drops[i],2,4)
+
+}
+}
+
+setTimeout(makeDrops,4000);
 makeJets()
 gameLoop();
 drawEverything();
