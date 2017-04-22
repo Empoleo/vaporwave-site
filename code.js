@@ -19,6 +19,7 @@ window.addEventListener('keyup',function(e){
 x = 100;
 
 function gameLoop() {
+    if(gameOver == false) {
     if (keyState[37] || keyState[65]){
         turnLeft();
     }    
@@ -30,6 +31,7 @@ function gameLoop() {
     // also redraw/animate any objects not controlled by the user
 
     setTimeout(gameLoop, 10);
+    }
 }    
 
 function drawEverything() {
@@ -89,12 +91,14 @@ setTimeout(function() {cdn = false;}, 600)
 }
 
 function fireShot(){
+    if(gameOver == false){
 var value = (turn - 90)*(Math.PI/180)
     var x = Math.cos(value)*50+497
         var y = Math.sin(value)*50+490
 var bullet = makeRect(x,y,6,6,"red",1)
 bulletArray.push(bullet)
 values.push(value)
+    }
 }
 
 function drawShot() {
@@ -112,9 +116,13 @@ move(bulletArray[i],Math.cos(values[i])*7,Math.sin(values[i])*7)
 }
 
 function makeJets() {
+    if(jets.length<10){
 var jet = makeImage("plane.png",-100,random(5,350),80,40,1)
 jets.push(jet)
+if(gameOver == false) {
 setTimeout(makeJets,random(500,2000))
+}
+}
 }
 
 function drawJets() {
@@ -189,16 +197,23 @@ function checkDrops() {
     }
 
 function makeDrops() {
+    if(drops.length<2){
 var drop = makeImage("supply.png",random(0,500),-100,60,60,1)
 drops.push(drop)
+if(gameOver == false) {
 setTimeout(makeDrops,4000)
+}
+}
 }
 
 function drawDrops() {
 for(var i = 0; i < drops.length;i++) {
 
 move(drops[i],2,4)
+if(getX(drops[i])>1100) {
 
+    removeArrayElement(drops, i)
+    }
 }
 }
 
