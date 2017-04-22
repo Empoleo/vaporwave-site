@@ -3,6 +3,7 @@ var values = [];
 var jets = [];
 var drops = [];
 
+var begin = false;
 var gameOver = false;
 var score = 0
 var scoreText = makeText("Score: 0", 660, 50, 25, "sans-serif", "white", 1)
@@ -74,7 +75,9 @@ function turnRight() {
 
 document.addEventListener('keydown', function (e) {
     if (32 == e.keyCode) {
+        if(begin == true){
      shotPrepare();
+        }
   }
 });
 
@@ -198,9 +201,9 @@ function checkDrops() {
 
 function makeDrops() {
     if(drops.length<2){
-var drop = makeImage("supply.png",random(0,500),-100,60,60,1)
-drops.push(drop)
 if(gameOver == false) {
+    var drop = makeImage("supply.png",random(0,500),-100,60,60,1)
+drops.push(drop)
 setTimeout(makeDrops,4000)
 }
 }
@@ -229,4 +232,5 @@ setTimeout(makeDrops,4000);
 setTimeout(makeJets,4000);
 gameLoop();
 drawEverything();
+    begin = true;
 }
