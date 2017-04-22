@@ -136,22 +136,23 @@ move(jets[i],6,0)
 function checkCollisionsShots() {
     for (var i = 0; i < bulletArray.length; i++) {
     for (var j = 0; j < jets.length; j++) {
-        for (var z = 0; z < values.length; z++) {
+
         
-          if (jets[j] != undefined && bulletArray[i] != undefined && values[z] != undefined) {  
+          if (jets[j] != undefined && bulletArray[i] != undefined && values[i] != undefined) {  
           if (collide(bulletArray[i], jets[j], 0, -20) == true) {
                
                 drawExplosion(getX(bulletArray[i]),getY(bulletArray[i]))
                 removeArrayElement(bulletArray, i)
-                removeArrayElement(values, z)
+                
                 removeArrayElement(jets, j)
+                removeArrayElement(values, i)
                 i++;
                 j++;
-              z++;
+
                 score++;
                 removeElement(scoreText)
                 scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
-          }
+          
           }
             
         }
@@ -162,23 +163,23 @@ function checkCollisionsShots() {
 function checkDrops() {
     for (var i = 0; i < bulletArray.length; i++) {
     for (var p = 0; p < drops.length; p++) {
-        for (var z = 0; z < values.length; z++) {
+
         
-          if (drops[p] != undefined && bulletArray[i] != undefined && values[z] != undefined) {  
+          if (drops[p] != undefined && bulletArray[i] != undefined && values[i] != undefined) {  
           if (collide(bulletArray[i], drops[p], 0, -20) == true) {
                 removeArrayElement(bulletArray, i)
                 removeArrayElement(drops, p)
-                removeArrayElement(values, z)
+                removeArrayElement(values, i)
                 i++;
                 p++;
-              z++;
+
                 lives++;
                 removeElement(livesText)
                 livesText = makeText("Lives: "+lives, 800, 50, 25, "sans-serif", "white", 1)
                 score++;
                 removeElement(scoreText)
                 scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
-          }
+          
           
             
         }
@@ -201,7 +202,16 @@ move(drops[i],2,4)
 }
 }
 
+document.getElementById("begin").addEventListener('click', start)
+
+function start() {
+    document.getElementById("start").setAttribute("opacity", 0)
+    document.getElementById("txt").setAttribute("opacity", 0)
+    document.getElementById("begin").setAttribute("opacity", 0)
+    document.getElementById("begin").setAttribute("x", 1500)
+    document.getElementById("extra").setAttribute("opacity", 0)
 setTimeout(makeDrops,4000);
-makeJets()
+setTimeout(makeJets,4000);
 gameLoop();
 drawEverything();
+}

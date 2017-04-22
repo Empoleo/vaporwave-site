@@ -2,3 +2,12 @@ svg {
 background-image: url("sky.png");
 background-size: 100%;
 }
+.svgText {
+    pointer-events: none;
+}
+
+html {
+user-select: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+}
