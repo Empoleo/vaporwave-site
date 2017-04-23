@@ -6,9 +6,9 @@ var drops = [];
 var begin = false;
 var gameOver = false;
 var score = 0
-var scoreText = makeText("Score: 0", 660, 50, 25, "sans-serif", "white", 1)
+var scoreText = makeText("Score: 0", 660, 50, 25, "sans-serif", "white", 0)
 var lives = 3
-var livesText = makeText("Lives: 3", 800, 50, 25, "sans-serif", "white", 1)
+var livesText = makeText("Lives: 3", 800, 50, 25, "sans-serif", "white", 0)
 var keyState = {};    
 window.addEventListener('keydown',function(e){
     keyState[e.keyCode || e.which] = true;
@@ -27,10 +27,6 @@ function gameLoop() {
     if (keyState[39] || keyState[68]){
         turnRight();
     }
-
-    // redraw/reposition your object here
-    // also redraw/animate any objects not controlled by the user
-
     setTimeout(gameLoop, 10);
     }
 }    
@@ -45,7 +41,10 @@ checkCollisionsShots()
 requestAnimationFrame(drawEverything)
 }
     else{
-    makeText("You Have Failed.", 145, 250, 100, "sans-serif", "white", 1)
+    makeText("You Have Failed.", 140, 250, 100, "sans-serif", "white", 1)
+    document.getElementById("restart").setAttribute("opacity", 1)
+    document.getElementById("reload").setAttribute("opacity", 1)
+    document.getElementById("restart").setAttribute("x", 400)
     }
 }
 
@@ -58,7 +57,7 @@ var turn = 0;
 function turnLeft() {
     if(turn > -50) {
     var gun = document.getElementById("gun");
-    turn -= 1.5;
+    turn -= 1.6;
     gun.setAttribute("transform", "rotate(" + turn + ",500,488)");
 
     }
@@ -67,7 +66,7 @@ function turnLeft() {
 function turnRight() {
     if(turn < 50) {
     var gun = document.getElementById("gun");
-    turn += 1.5;
+    turn += 1.6;
     gun.setAttribute("transform", "rotate(" + turn + ",500,488)");
 
     }
@@ -213,7 +212,7 @@ function drawDrops() {
 for(var i = 0; i < drops.length;i++) {
 
 move(drops[i],2,4)
-if(getX(drops[i])>1100) {
+if(getY(drops[i])>500 || getX(drops[i])>1100) {
 
     removeArrayElement(drops, i)
     }
@@ -222,12 +221,30 @@ if(getX(drops[i])>1100) {
 
 document.getElementById("begin").addEventListener('click', start)
 
+document.getElementById("info").addEventListener('click', instruction)
+
+document.getElementById("restart").addEventListener('click', restartGame)
+
+function instruction() {
+alert("Your job is to shoot down the incoming enemy jets, by using a stationary air defense turret. To control the turret, use the left and right arrow keys to move, and the spacebar to fire. If too many jets pass you, you will lose. Your lives and score are displayed in the top right. Lives can be recovered by shooting down parachuted packages, giving you a point along with a life.")
+}
+
+function restartGame() {
+ location.reload();  
+}
+
 function start() {
+    document.getElementById("info").setAttribute("x", 1500)
+    document.getElementById("infoText").setAttribute("x", 1500)
+    document.getElementById("info").setAttribute("opacity", 0)
+    document.getElementById("infoText").setAttribute("opacity", 0)
     document.getElementById("start").setAttribute("opacity", 0)
     document.getElementById("txt").setAttribute("opacity", 0)
     document.getElementById("begin").setAttribute("opacity", 0)
     document.getElementById("begin").setAttribute("x", 1500)
     document.getElementById("extra").setAttribute("opacity", 0)
+    scoreText.setAttribute("opacity", "1")
+    livesText.setAttribute("opacity", "1")
 setTimeout(makeDrops,4000);
 setTimeout(makeJets,4000);
 gameLoop();
