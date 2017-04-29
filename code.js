@@ -1,253 +1,249 @@
-var bulletArray = [];
-var values = [];
-var jets = [];
-var drops = [];
+var rotation = 0;
+var lines = [];
+var carArray = [];
+var boulderList = [];
 
-var begin = false;
+
 var gameOver = false;
-var score = 0
-var scoreText = makeText("Score: 0", 660, 50, 25, "sans-serif", "white", 0)
-var lives = 3
-var livesText = makeText("Lives: 3", 800, 50, 25, "sans-serif", "white", 0)
+
+
 var keyState = {};    
 window.addEventListener('keydown',function(e){
     keyState[e.keyCode || e.which] = true;
+
 },true);    
 window.addEventListener('keyup',function(e){
+
+    if(e.keyCode == 38||e.keyCode == 87) {
+    accel=0;
+    }
+    if(e.keyCode == 40||e.keyCode == 83) {
+    baccel=0;
+    }
+    
     keyState[e.keyCode || e.which] = false;
 },true);
 
 x = 100;
 
+var driving = false;
+var drivingback = false;
+
+var accel = 0;
+var baccel = 0;
+
+function create(){
+var car = makeImage("turncar.png",800,480,80,110,1,"car")
+}
+
+
+
 function gameLoop() {
-    if(gameOver == false) {
+if(gameOver == false) {
     if (keyState[37] || keyState[65]){
         turnLeft();
     }    
     if (keyState[39] || keyState[68]){
         turnRight();
     }
-    setTimeout(gameLoop, 10);
+       if (keyState[40] || keyState[83]){
+           if(baccel<8){
+        baccel = baccel + 0.1
     }
-}    
-
-function drawEverything() {
-    if(gameOver == false) {
-        drawDrops()
-    drawJets()
-drawShot()
-checkDrops()
-checkCollisionsShots()
-requestAnimationFrame(drawEverything)
-}
+        backwards();
+           drivingback = true;
+    }
     else{
-    makeText("You Have Failed.", 140, 250, 100, "sans-serif", "white", 1)
-    document.getElementById("restart").setAttribute("opacity", 1)
-    document.getElementById("reload").setAttribute("opacity", 1)
-    document.getElementById("restart").setAttribute("x", 400)
+    drivingback = false;
     }
+        if (keyState[38] || keyState[87]){
+            if(accel<8){
+        accel = accel + 0.1
+    }
+       drive();
+            driving = true;
+        }
+    else{
+    driving = false;
+    }
+checkCollisions()
+checkCollisionsBoulders()
+
+if(getX(car)>2000||getX(car)<-50||getY(car)<-50||getY(car)>950){
+gameOver = true;
 }
 
+    setTimeout(gameLoop, 10);
+}    }
 
 var mouse = {x: 0, y: 0}
-var turn = 0;
-
-
 
 function turnLeft() {
-    if(turn > -50) {
-    var gun = document.getElementById("gun");
-    turn -= 1.6;
-    gun.setAttribute("transform", "rotate(" + turn + ",500,488)");
-
+    if(driving == true||drivingback == true) {
+    rotation -= 1.5;
+    car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
     }
 }
+
 
 function turnRight() {
-    if(turn < 50) {
-    var gun = document.getElementById("gun");
-    turn += 1.6;
-    gun.setAttribute("transform", "rotate(" + turn + ",500,488)");
-
+    if(driving == true||drivingback == true) {
+    rotation += 1.5;
+car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
     }
 }
 
-document.addEventListener('keydown', function (e) {
-    if (32 == e.keyCode) {
-        if(begin == true){
-     shotPrepare();
-        }
-  }
-});
+function drive() {
+    var value = rotation*(Math.PI/180)
+move(car,Math.cos(value)*accel,Math.sin(value)*accel)
 
-var cdn = false;
+car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
+}
 
-function shotPrepare() {
-    if(cdn == false){
-fireShot()
-cdn=true;
-setTimeout(function() {cdn = false;}, 600)
-    }
+function backwards() {
+    var value = rotation*(Math.PI/180)
+move(car,-(Math.cos(value)*baccel),-(Math.sin(value)*baccel))
+
+car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
+}
+
+function initialize(){
+    if (gameOver == false) {
+    var val = 50
+for(var i=0;i<21;i++){
+var line = makeRect(val,495,50,10,"yellow",1)
+lines.push(line)
+    val = val+100;
+}
+}
+}
     
-
-}
-
-function fireShot(){
+function drawRoad(){
     if(gameOver == false){
-var value = (turn - 90)*(Math.PI/180)
-    var x = Math.cos(value)*50+497
-        var y = Math.sin(value)*50+490
-var bullet = makeRect(x,y,6,6,"red",1)
-bulletArray.push(bullet)
-values.push(value)
+    for(var i = 0;i<21;i++) {
+    move(lines[i],-2,0)
+    if(getX(lines[i])<-50) {
+    setX(lines[i],2050)
     }
-}
-
-function drawShot() {
-for(var i = 0; i < bulletArray.length; i++) {
-    if(getY(bulletArray[i])>0 && getX(bulletArray[i])<1000){
-move(bulletArray[i],Math.cos(values[i])*7,Math.sin(values[i])*7)
-
     }
-    else{
-
-    removeArrayElement(bulletArray,i)
-    removeArrayElement(values,i)
-    }
+    setTimeout(drawRoad,1)
 }
 }
 
-function makeJets() {
-    if(jets.length<10){
-var jet = makeImage("plane.png",-100,random(5,350),80,40,1)
-jets.push(jet)
-if(gameOver == false) {
-setTimeout(makeJets,random(500,2000))
-}
-}
-}
+function checkCollisions() {
+    for (var i = 0; i < carArray.length; i++) {
 
-function drawJets() {
-for(var i = 0; i < jets.length;i++) {
-
-move(jets[i],6,0)
-    if(getX(jets[i])>1100) {
-        lives--;
-        removeElement(livesText)
-        livesText = makeText("Lives: "+lives, 800, 50, 25, "sans-serif", "white", 1)
-        if(lives <= 0) {
-        gameOver = true;
-        }
-    removeArrayElement(jets, i)
-    }
-}
-}
-
-function checkCollisionsShots() {
-    for (var i = 0; i < bulletArray.length; i++) {
-    for (var j = 0; j < jets.length; j++) {
-
-        
-          if (jets[j] != undefined && bulletArray[i] != undefined && values[i] != undefined) {  
-          if (collide(bulletArray[i], jets[j], 0, -20) == true) {
+            
+          if (car != undefined && carArray[i] != undefined) {  
+          if (collide(car, carArray[i], 8, 8) == true) {
                
-                drawExplosion(getX(bulletArray[i]),getY(bulletArray[i]))
-                removeArrayElement(bulletArray, i)
+                drawExplosion(getX(car)+40,getY(car)+65)
                 
-                removeArrayElement(jets, j)
-                removeArrayElement(values, i)
+                gameOver = true;
                 i++;
-                j++;
-
-                score++;
-                removeElement(scoreText)
-                scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
-          
+                
           }
+         
+            }
+            }
+        }
+
+function checkCollisionsBoulders() {
+    for (var i = 0; i < boulderList.length; i++) {
+
             
-        }
-    }
-        }
-    }
-
-function checkDrops() {
-    for (var i = 0; i < bulletArray.length; i++) {
-    for (var p = 0; p < drops.length; p++) {
-
-        
-          if (drops[p] != undefined && bulletArray[i] != undefined && values[i] != undefined) {  
-          if (collide(bulletArray[i], drops[p], 0, -20) == true) {
-                removeArrayElement(bulletArray, i)
-                removeArrayElement(drops, p)
-                removeArrayElement(values, i)
+          if (car != undefined && boulderList[i] != undefined) {  
+          if (collide(car, boulderList[i], 8, 8) == true) {
+               
+                drawExplosion(getX(car)+40,getY(car)+65)
+                
+                gameOver = true;
                 i++;
-                p++;
-
-                lives++;
-                removeElement(livesText)
-                livesText = makeText("Lives: "+lives, 800, 50, 25, "sans-serif", "white", 1)
-                score++;
-                removeElement(scoreText)
-                scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
-          
-          
-            
+                
+          }
+         
+            }
+            }
         }
-        }
-    }
-        }
-    }
-
-function makeDrops() {
-    if(drops.length<2){
-if(gameOver == false) {
-    var drop = makeImage("supply.png",random(0,500),-100,60,60,1)
-drops.push(drop)
-setTimeout(makeDrops,4000)
-}
+        
+function makeBoulders() {
+    if(gameOver == false) {
+var obstacle = makeImage("boulder.png",random(500,2000),-100,120,120,1,"boulder")
+boulderList.push(obstacle)
+setTimeout(makeBoulders,1500)
 }
 }
 
-function drawDrops() {
-for(var i = 0; i < drops.length;i++) {
 
-move(drops[i],2,4)
-if(getY(drops[i])>500 || getX(drops[i])>1100) {
+function drawBoulders() {
+    if(gameOver == false) {
+for(var i = 0; i < boulderList.length;i++) {
 
-    removeArrayElement(drops, i)
+move(boulderList[i],-4,2)
+    if(getX(boulderList[i])<-100) {
+        
+    removeArrayElement(boulderList, i)
     }
+}
+    setTimeout(drawBoulders,1)
+}
+}
+
+
+
+
+function makeRocks() {
+    if(gameOver == false) {
+var obstacle = makeImage("rock.png",2100,random(-10,1000),120,120,1,"rock")
+carArray.push(obstacle)
+setTimeout(makeRocks,200)
+}
+}
+
+
+function drawRocks() {
+    if(gameOver == false) {
+for(var i = 0; i < carArray.length;i++) {
+
+move(carArray[i],-2,0)
+    if(getX(carArray[i])<-100) {
+        
+    removeArrayElement(carArray, i)
+    }
+}
+    setTimeout(drawRocks,1)
+}
+}
+
+
+function back() {
+    if(gameOver == false) {
+move(car,-2,0)
+car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
+setTimeout(back,1)
 }
 }
 
 document.getElementById("begin").addEventListener('click', start)
+document.getElementById("extra").addEventListener('click', start)
 
-document.getElementById("info").addEventListener('click', instruction)
+function start(){
 
-document.getElementById("restart").addEventListener('click', restartGame)
-
-function instruction() {
-alert("Your job is to shoot down the incoming enemy jets, by using a stationary air defense turret. To control the turret, use the left and right arrow keys to move, and the spacebar to fire. If too many jets pass you, you will lose. Your lives and score are displayed in the top right. Lives can be recovered by shooting down parachuted packages, giving you a point along with a life.")
-}
-
-function restartGame() {
- location.reload();  
-}
-
-function start() {
-    document.getElementById("info").setAttribute("x", 1500)
-    document.getElementById("infoText").setAttribute("x", 1500)
-    document.getElementById("info").setAttribute("opacity", 0)
-    document.getElementById("infoText").setAttribute("opacity", 0)
     document.getElementById("start").setAttribute("opacity", 0)
     document.getElementById("txt").setAttribute("opacity", 0)
     document.getElementById("begin").setAttribute("opacity", 0)
     document.getElementById("begin").setAttribute("x", 1500)
     document.getElementById("extra").setAttribute("opacity", 0)
-    scoreText.setAttribute("opacity", "1")
-    livesText.setAttribute("opacity", "1")
-setTimeout(makeDrops,4000);
-setTimeout(makeJets,4000);
+    document.getElementById("extra").setAttribute("x", 1500)
+    initialize();
+    create();
+drawRoad();
+makeRocks();
+drawRocks();
+setTimeout(makeBoulders,1000)
+drawBoulders();
 gameLoop();
-drawEverything();
-    begin = true;
+back();
 }
+
+

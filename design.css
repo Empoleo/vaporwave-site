@@ -1,13 +1,19 @@
-svg {
-background-image: url("sky.png");
-background-size: 100%;
-}
-.svgText {
-    pointer-events: none;
+svg{
+background-color: green
+
 }
 
-html {
-user-select: none;
+html{
+background: url(rock.png) no-repeat -9999px -9999px;
+    user-select: none;
 -webkit-user-select: none;
 -moz-user-select: none;
+}
+
+body{
+background: url(boulder.png) no-repeat -9999px -9999px;
+}
+
+#empty{
+background: url(turncar.png) no-repeat -9999px -9999px;
 }

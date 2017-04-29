@@ -216,7 +216,7 @@ function makeText(message, x, y, fontSize, fontFamily, fill, opacity) {
   return text
 }
 
-function makeImage(url, x, y, width, height, opacity) {
+function makeImage(url, x, y, width, height, opacity, id) {
   var image = document.createElementNS(namespace, "image")
   image.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", url)
   image.setAttribute("x", x)
@@ -224,6 +224,7 @@ function makeImage(url, x, y, width, height, opacity) {
   image.setAttribute("width", width)
   image.setAttribute("height", height)
   image.setAttribute("opacity", opacity)
+image.setAttribute("id", id)
 
   var canvas = document.getElementById("canvas")
   canvas.appendChild(image)
