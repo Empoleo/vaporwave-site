@@ -135,7 +135,7 @@ function checkCollisions() {
 
             
           if (car != undefined && carArray[i] != undefined) {  
-          if (collide(car, carArray[i], 8, 8) == true) {
+          if (collide(car, carArray[i], 10, 10) == true) {
                
                 drawExplosion(getX(car)+40,getY(car)+65)
                 
@@ -153,7 +153,7 @@ function checkCollisionsBoulders() {
 
             
           if (car != undefined && boulderList[i] != undefined) {  
-          if (collide(car, boulderList[i], 8, 8) == true) {
+          if (collide(car, boulderList[i], 10, 10) == true) {
                
                 drawExplosion(getX(car)+40,getY(car)+65)
                 
