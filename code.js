@@ -2,7 +2,9 @@ var rotation = 0;
 var lines = [];
 var carArray = [];
 var boulderList = [];
+var scoreText = makeText("Score: 0", 1600, 50, 50, "sans-serif", "white", 0)
 
+var score = 0;
 
 var gameOver = false;
 
@@ -36,7 +38,11 @@ function create(){
 var car = makeImage("turncar.png",800,480,80,110,1,"car")
 }
 
-
+function score() {
+score = score + 1;
+scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
+setTimeout(score,1000)
+}
 
 function gameLoop() {
 if(gameOver == false) {
@@ -135,7 +141,7 @@ function checkCollisions() {
 
             
           if (car != undefined && carArray[i] != undefined) {  
-          if (collide(car, carArray[i], 10, 10) == true) {
+          if (collide(car, carArray[i], 15, 15) == true) {
                
                 drawExplosion(getX(car)+40,getY(car)+65)
                 
@@ -153,7 +159,7 @@ function checkCollisionsBoulders() {
 
             
           if (car != undefined && boulderList[i] != undefined) {  
-          if (collide(car, boulderList[i], 10, 10) == true) {
+          if (collide(car, boulderList[i], 15, 15) == true) {
                
                 drawExplosion(getX(car)+40,getY(car)+65)
                 
@@ -168,7 +174,7 @@ function checkCollisionsBoulders() {
         
 function makeBoulders() {
     if(gameOver == false) {
-var obstacle = makeImage("boulder.png",random(500,2000),-100,120,120,1,"boulder")
+var obstacle = makeImage("boulder.png",random(800,2500),-100,120,120,1,"boulder")
 boulderList.push(obstacle)
 setTimeout(makeBoulders,1500)
 }
@@ -215,6 +221,14 @@ move(carArray[i],-2,0)
 }
 }
 
+function scoreup(){
+    if(gameOver == false){
+removeElement(scoreText)
+score = score + 1;
+scoreText = makeText("Score: "+score, 1600, 50, 50, "sans-serif", "white", 1)
+setTimeout(scoreup,10)
+}
+}
 
 function back() {
     if(gameOver == false) {
@@ -235,12 +249,14 @@ function start(){
     document.getElementById("begin").setAttribute("x", 1500)
     document.getElementById("extra").setAttribute("opacity", 0)
     document.getElementById("extra").setAttribute("x", 1500)
+    scoreText.setAttribute("opacity", "1")
     initialize();
     create();
 drawRoad();
 makeRocks();
+scoreup();
 drawRocks();
-setTimeout(makeBoulders,1000)
+setTimeout(makeBoulders,1000);
 drawBoulders();
 gameLoop();
 back();
