@@ -1,19 +1,17 @@
 svg{
-background-color: green
+background-color: black;
+    background-size: 5%;
 
 }
 
 html{
-background: url(rock.png) no-repeat -9999px -9999px;
-    user-select: none;
--webkit-user-select: none;
--moz-user-select: none;
+
 }
 
 body{
-background: url(boulder.png) no-repeat -9999px -9999px;
+
 }
 
 #empty{
-background: url(turncar.png) no-repeat -9999px -9999px;
+
 }

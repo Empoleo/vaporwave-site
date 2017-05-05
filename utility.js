@@ -65,7 +65,7 @@ function collide(player, obstacle, offsetX, offsetY) {
     offsetY = 0
   }
   if (!(getX(obstacle) + offsetX > getX(player) + Number(player.getAttribute("width"))/2
-      || getX(obstacle) + Number(obstacle.getAttribute("width")) - offsetX < getX(player)
+      || getX(obstacle) + Number(obstacle.getAttribute("width"))/2 - offsetX < getX(player)
       || getY(obstacle) + offsetY > getY(player) + Number(player.getAttribute("height"))/2
       || getY(obstacle) + Number(obstacle.getAttribute("height"))/2 - offsetY < getY(player))) {
         return true
@@ -227,6 +227,21 @@ function makeImage(url, x, y, width, height, opacity, id) {
 image.setAttribute("id", id)
 
   var canvas = document.getElementById("canvas")
+  canvas.appendChild(image)
+  return image
+}
+
+function makegImage(url, x, y, width, height, opacity, id) {
+  var image = document.createElementNS(namespace, "image")
+  image.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", url)
+  image.setAttribute("x", x)
+  image.setAttribute("y", y)
+  image.setAttribute("width", width)
+  image.setAttribute("height", height)
+  image.setAttribute("opacity", opacity)
+image.setAttribute("id", id)
+
+  var canvas = document.getElementById("main")
   canvas.appendChild(image)
   return image
 }

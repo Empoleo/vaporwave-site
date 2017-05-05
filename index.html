@@ -3,20 +3,22 @@
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <link rel="stylesheet" href="design.css">
-    <link rel="shortcut icon" href="wheel.png" />
+
     <title>
-        Drive Game
+        RPG
     </title>
 </head>
 <div id="empty"></div>
 <body>
       <svg id="canvas" width="90%" viewBox="0 0 2000 1000">
-          <rect fill="darkgrey" x="0" y="350" height="300" width="2000"></rect>
-          <rect width="2000" height="1000" fill="green" id="start"></rect>
-          <text x="400" y="400" font-size="160" id="txt">Earthquake Escape</text>
-          <rect width="400" height="100" fill="black" x="800" y="600" id="begin"></rect>
-          <text x="900" y="670" font-size="80" fill="white" id="extra" class="svgText">Begin</text>
-         
+         <g id="main">
+<rect x="-1000" width="4000" height="4000" y="-1000" fill="green"></rect>
+
+<rect x="-1050" width="50" y="-1050" height="4100" fill="grey"></rect>
+<rect x="-1050" width="4100" y="-1050" height="50" fill="grey"></rect>
+<rect x="3000" width="50" y="-1050" height="4100" fill="grey"></rect>
+<rect x="-1050" width="4100" y="3000" height="50" fill="grey"></rect>
+          </g>
       </svg>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

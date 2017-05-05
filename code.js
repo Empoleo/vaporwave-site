@@ -1,265 +1,209 @@
-var rotation = 0;
-var lines = [];
-var carArray = [];
-var boulderList = [];
-var scoreText = makeText("Score: 0", 1600, 50, 50, "sans-serif", "white", 0)
+var mouse = {x: 0, y: 0}
 
-var score = 0;
+var shots = [];
+var values = [];
+
+var spiders = [];
+var spiderAng = [];
 
 var gameOver = false;
 
+var spin = [0,90,180,270,360];
+
+var moving = false;
 
 var keyState = {};    
 window.addEventListener('keydown',function(e){
     keyState[e.keyCode || e.which] = true;
+    moving=true;
 
 },true);    
-window.addEventListener('keyup',function(e){
-
-    if(e.keyCode == 38||e.keyCode == 87) {
-    accel=0;
-    }
-    if(e.keyCode == 40||e.keyCode == 83) {
-    baccel=0;
-    }
-    
+window.addEventListener('keyup',function(e){ 
     keyState[e.keyCode || e.which] = false;
+    moving=false;
 },true);
 
 x = 100;
 
-var driving = false;
-var drivingback = false;
+var lr = 0;
+var ud = 0;
 
-var accel = 0;
-var baccel = 0;
+var blr = 0
+var bud = 0;
 
-function create(){
-var car = makeImage("turncar.png",800,480,80,110,1,"car")
-}
+var pointing = "right"
 
-function score() {
-score = score + 1;
-scoreText = makeText("Score: "+score, 660, 50, 25, "sans-serif", "white", 1)
-setTimeout(score,1000)
-}
+var player = makeImage("images/right.png",800,480,80,110,1,"player")
+
+
 
 function gameLoop() {
+    
 if(gameOver == false) {
     if (keyState[37] || keyState[65]){
-        turnLeft();
-    }    
-    if (keyState[39] || keyState[68]){
-        turnRight();
-    }
-       if (keyState[40] || keyState[83]){
-           if(baccel<8){
-        baccel = baccel + 0.1
-    }
-        backwards();
-           drivingback = true;
-    }
-    else{
-    drivingback = false;
-    }
-        if (keyState[38] || keyState[87]){
-            if(accel<8){
-        accel = accel + 0.1
-    }
-       drive();
-            driving = true;
-        }
-    else{
-    driving = false;
-    }
-checkCollisions()
-checkCollisionsBoulders()
-
-if(getX(car)>2000||getX(car)<-50||getY(car)<-50||getY(car)>950){
-gameOver = true;
+lr = lr+4;
+        main.setAttribute("transform","translate("+lr+","+ud+")")
+for(var i = 0; i<shots.length;i++){
+move(shots[i],4,0)
 }
+
+    }    
+    
+    
+    if (keyState[39] || keyState[68]){
+lr = lr-4;
+        main.setAttribute("transform","translate("+lr+","+ud+")")
+    for(var i = 0; i<shots.length;i++){
+move(shots[i],-4,0)
+}    
+    }
+    
+    
+       if (keyState[40] || keyState[83]){
+ud = ud-4;
+        main.setAttribute("transform","translate("+lr+","+ud+")")
+        for(var i = 0; i<shots.length;i++){
+move(shots[i],0,-4)
+}
+    }
+    
+    
+        if (keyState[38] || keyState[87]){
+ud = ud+4;
+        main.setAttribute("transform","translate("+lr+","+ud+")")
+        for(var i = 0; i<shots.length;i++){
+move(shots[i],0,4)
+}
+        }
+
+if(mouse.x<1000){
+    if(moving==true){
+        removeElement(player)
+player = makeImage("images/leftwalk.gif",960,480,100,120,1,"player")
+pointing = "left"
+    }
+    else{
+    removeElement(player)
+player = makeImage("images/left.png",960,480,100,120,1,"player")
+pointing = "left"
+    }
+}
+    else{
+        if(moving==true){
+        removeElement(player)
+player = makeImage("images/rightwalk.gif",960,480,100,120,1,"player")
+pointing = "right"
+    }
+    else{
+    removeElement(player)
+player = makeImage("images/right.png",960,480,100,120,1,"player")
+pointing = "right"
+    }
+    }
 
     setTimeout(gameLoop, 10);
+    drawShot()
+    checkDistance()
 }    }
 
-var mouse = {x: 0, y: 0}
+document.addEventListener('click', function () {
+console.log(mouse.x,mouse.y)
+     shotPrepare();
+        
+        
+  
+});
 
-function turnLeft() {
-    if(driving == true||drivingback == true) {
-    rotation -= 1.5;
-    car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
+var cdn = false;
+
+function shotPrepare() {
+    if(cdn == false){
+fireShot()
+cdn=true;
+setTimeout(function() {cdn = false;}, 600)
+    }
+
+
+}
+
+
+function fireShot(){
+    if(gameOver == false){
+        if(pointing == "right"){
+var angle = (Math.atan2(533-mouse.y,1060-mouse.x))+Math.PI
+var shot = makeRect(1060,530,10,10,"black",1)
+
+shots.push(shot)
+values.push(angle)
+    }
+if(pointing == "left"){
+var angle = (Math.atan2(536-mouse.y,959-mouse.x))+Math.PI
+var shot = makeRect(959,530,10,10,"black",1)
+
+shots.push(shot)
+values.push(angle)
+    }
     }
 }
 
-
-function turnRight() {
-    if(driving == true||drivingback == true) {
-    rotation += 1.5;
-car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
+function enemySpawn(){
+    for(var i=0;i<20;i++){
+var spider = makegImage("images/spider.gif",random(-900,2900),random(-900,2900),100,100,1,"spider")
+spiders.push(spider)
     }
 }
 
-function drive() {
-    var value = rotation*(Math.PI/180)
-move(car,Math.cos(value)*accel,Math.sin(value)*accel)
+function drawShot() {
+for(var i = 0; i < shots.length; i++) {
 
-car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
-}
-
-function backwards() {
-    var value = rotation*(Math.PI/180)
-move(car,-(Math.cos(value)*baccel),-(Math.sin(value)*baccel))
-
-car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
-}
-
-function initialize(){
-    if (gameOver == false) {
-    var val = 50
-for(var i=0;i<21;i++){
-var line = makeRect(val,495,50,10,"yellow",1)
-lines.push(line)
-    val = val+100;
-}
-}
-}
+    move(shots[i],Math.cos(values[i])*20,Math.sin(values[i])*20)
     
-function drawRoad(){
-    if(gameOver == false){
-    for(var i = 0;i<21;i++) {
-    move(lines[i],-2,0)
-    if(getX(lines[i])<-50) {
-    setX(lines[i],2050)
     }
-    }
-    setTimeout(drawRoad,1)
-}
+    
 }
 
-function checkCollisions() {
-    for (var i = 0; i < carArray.length; i++) {
-
-            
-          if (car != undefined && carArray[i] != undefined) {  
-          if (collide(car, carArray[i], 15, 15) == true) {
-               
-                drawExplosion(getX(car)+40,getY(car)+65)
-                
-                gameOver = true;
-                i++;
-                
-          }
-         
-            }
-            }
-        }
-
-function checkCollisionsBoulders() {
-    for (var i = 0; i < boulderList.length; i++) {
-
-            
-          if (car != undefined && boulderList[i] != undefined) {  
-          if (collide(car, boulderList[i], 15, 15) == true) {
-               
-                drawExplosion(getX(car)+40,getY(car)+65)
-                
-                gameOver = true;
-                i++;
-                
-          }
-         
-            }
-            }
-        }
-        
-function makeBoulders() {
-    if(gameOver == false) {
-var obstacle = makeImage("boulder.png",random(800,2500),-100,120,120,1,"boulder")
-boulderList.push(obstacle)
-setTimeout(makeBoulders,1500)
-}
-}
-
-
-function drawBoulders() {
-    if(gameOver == false) {
-for(var i = 0; i < boulderList.length;i++) {
-
-move(boulderList[i],-4,2)
-    if(getX(boulderList[i])<-100) {
-        
-    removeArrayElement(boulderList, i)
+function drawBack(){
+    var drawx = -1000;
+    var drawy = -1000;
+for(var i=0;i<1600;i++){
+var grass = makegImage("images/grass3.png",drawx,drawy,100,100,1,"grass")
+grass.setAttribute("transform","rotate("+spin[random(1,4)]+","+(drawx+50)+","+(drawy+50)+")")
+drawx = drawx+100;
+    if(drawx==3000){
+    drawy= drawy+100;
+        drawx=-1000;
     }
 }
-    setTimeout(drawBoulders,1)
-}
 }
 
-
-
-
-function makeRocks() {
-    if(gameOver == false) {
-var obstacle = makeImage("rock.png",2100,random(-10,1000),120,120,1,"rock")
-carArray.push(obstacle)
-setTimeout(makeRocks,200)
-}
-}
-
-
-function drawRocks() {
-    if(gameOver == false) {
-for(var i = 0; i < carArray.length;i++) {
-
-move(carArray[i],-2,0)
-    if(getX(carArray[i])<-100) {
-        
-    removeArrayElement(carArray, i)
+function drawPlants(){
+    for(var i=0;i<50;i++){
+var grass = makegImage("images/flowers.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"grass")
+var grass = makegImage("images/shrub.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"grass")
     }
 }
-    setTimeout(drawRocks,1)
-}
-}
 
-function scoreup(){
-    if(gameOver == false){
-removeElement(scoreText)
-score = score + 1;
-scoreText = makeText("Score: "+score, 1600, 50, 50, "sans-serif", "white", 1)
-setTimeout(scoreup,10)
-}
-}
+function checkDistance(){
 
-function back() {
-    if(gameOver == false) {
-move(car,-2,0)
-car.setAttribute("transform", "rotate(" + rotation + ","+ (getX(car)+40) +","+ (getY(car)+65) +")");
-setTimeout(back,1)
-}
-}
+for(var i = 0;i<spiders.length;i++){
+var bgx = getX(spiders[i])+lr
+var bgy = getY(spiders[i])+ud
+var ggx = getX(player)
+var ggy = getY(player)
+//console.log(Math.sqrt(Math.pow(bgx-ggx,2) + Math.pow(bgy-ggy,2)))
+if(Math.sqrt(Math.pow(bgx-ggx,2) + Math.pow(bgy-ggy,2))<1000){
 
-document.getElementById("begin").addEventListener('click', start)
-document.getElementById("extra").addEventListener('click', start)
-
-function start(){
-
-    document.getElementById("start").setAttribute("opacity", 0)
-    document.getElementById("txt").setAttribute("opacity", 0)
-    document.getElementById("begin").setAttribute("opacity", 0)
-    document.getElementById("begin").setAttribute("x", 1500)
-    document.getElementById("extra").setAttribute("opacity", 0)
-    document.getElementById("extra").setAttribute("x", 1500)
-    scoreText.setAttribute("opacity", "1")
-    initialize();
-    create();
-drawRoad();
-makeRocks();
-scoreup();
-drawRocks();
-setTimeout(makeBoulders,1000);
-drawBoulders();
-gameLoop();
-back();
+    var angle = (Math.atan2(bgy-ggy,bgx-ggx))+Math.PI
+    move(spiders[i],Math.cos(angle)*2,Math.sin(angle)*2)
 }
 
 
+}
+}
+
+
+
+gameLoop()
+drawBack()
+drawPlants()
+enemySpawn();
