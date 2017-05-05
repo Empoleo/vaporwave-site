@@ -356,6 +356,7 @@ drawPlants()
 enemySpawn();
               main.setAttribute("transform","translate(0,0)")
 increase++;
+              spiders=[];
               score++
               removeElement(floors)
               floors = makeText("Floor: "+score, 1800, 60, 50, "Bitter", "white", 1)
