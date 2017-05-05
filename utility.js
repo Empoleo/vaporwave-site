@@ -245,3 +245,36 @@ image.setAttribute("id", id)
   canvas.appendChild(image)
   return image
 }
+
+function specialCollide(player, obstacle, offsetX, offsetY) {
+  if (!offsetX) {
+    offsetX = 0
+  }
+  if (!offsetY) {
+    offsetY = 0
+  }
+  if (!(getX(obstacle)+lr+ offsetX > getX(player) + Number(player.getAttribute("width"))/2
+      || getX(obstacle)+lr+ Number(obstacle.getAttribute("width"))/2 - offsetX < getX(player)
+      || getY(obstacle)+ud+ offsetY > getY(player) + Number(player.getAttribute("height"))/2
+      || getY(obstacle)+ud+ Number(obstacle.getAttribute("height"))/2 - offsetY < getY(player))) {
+        return true
+      }
+  else {
+    return false
+  }
+}
+
+function makeSpecialRect(x, y, width, height, fill, opacity,id) {
+  var rect = document.createElementNS(namespace, "rect")
+  rect.setAttribute("x", x)
+  rect.setAttribute("y", y)
+  rect.setAttribute("width", width)
+  rect.setAttribute("height", height)
+  rect.setAttribute("fill", fill)
+  rect.setAttribute("opacity", opacity)
+    rect.setAttribute("id", id)
+
+  var canvas = document.getElementById("canvas")
+  canvas.appendChild(rect)
+  return rect
+}
