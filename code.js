@@ -1,12 +1,32 @@
 var mouse = {x: 0, y: 0}
 
+var increase = 3;
+
+var floors = makeText("Floor: 1", 1800, 60, 50, "Bitter", "white", 1)
+
+
+
 var shots = [];
 var values = [];
 
 var spiders = [];
 var spiderAng = [];
 
+var walls = []
+walls.push(document.getElementById("top"),document.getElementById("left"),document.getElementById("bottom"),document.getElementById("right"))
+
+var movesx = [0,5,0,-5]
+var movesy = [5,0,-5,0]
+
+var score = 1;
+
+var load = makeSpecialRect(960,600,100,20,"black",1,"load")
+var red = makeSpecialRect(960,600,0,20,"red",1,"red")
+
 var gameOver = false;
+
+var holder1 = [];
+var holder2 = [];
 
 var add = 0;
 
@@ -37,7 +57,11 @@ var pointing = "right"
 
 var player = makeImage("images/right.png",800,480,80,110,1,"player")
 
+var heart1 = makeImage("images/heart.png",1000,450,20,20,1,"heart")
+var heart2 = makeImage("images/heart.png",970,450,20,20,1,"heart")
+var heart3 = makeImage("images/heart.png",1030,450,20,20,1,"heart")
 
+var life = 3;
 
 function gameLoop() {
     
@@ -107,10 +131,13 @@ pointing = "right"
     checkCollisionsShots()
     drawShot()
     checkDistance()
+    checkCollisionsWalls()
+    checkCollisionsPlayer()
+    checkCollisionsDoor()
 }    }
 
 document.addEventListener('click', function () {
-console.log(mouse.x,mouse.y)
+
      shotPrepare();
         
         
@@ -118,35 +145,44 @@ console.log(mouse.x,mouse.y)
 });
 
 var cdn = false;
+var scdn = false;
 
 function shotPrepare() {
-    if(cdn == false){
+    if(cdn == false&&scdn == false){
+        if(gameOver == false){
     
 fireShot()
 
 
 cdn=true;
         
-setTimeout(function() {add = 0;cdn = false;}, 980)
+setTimeout(function() {scdn=false;cdn = false;}, 1000)
+if(scdn == false){
 showReload()
+}
+        scdn= true;
     }
 
-
+    }
 }
 
 
 
 function showReload(){
-    if(cdn==true && add<110){
+
+    if(add<100){
         
-var load = makeRect(960,600,100,20,"black",1)
-var red = makeRect(960,600,add,20,"red",1)
-add+=10;
-        setTimeout(showReload,90)
+red.setAttribute("width",add)
+holder1[0]=load
+holder2[0]=red
+
+
+
+add+=1;
+
+        setTimeout(showReload,7)
 }
 else{
-removeElement(load)
-removeElement(red)
 add=0;
 }
     
@@ -208,8 +244,13 @@ drawx = drawx+100;
 function drawPlants(){
     for(var i=0;i<50;i++){
 var grass = makegImage("images/flowers.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"grass")
-var grass = makegImage("images/shrub.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"grass")
+var flower = makegImage("images/shrub.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"flower")
     }
+    var list = [0,random(-900,-100),random(1100,2900)]
+        var val = random(1,2)
+        var list2 = [0,random(-900,-100),random(1100,2900)]
+        var val2 = random(1,2)
+    var door = makegImage("images/trapdoor.png",list[val],list2[val2],100,100,1,"door")
 }
 
 function checkDistance(){
@@ -223,7 +264,7 @@ var ggy = getY(player)
 if(Math.sqrt(Math.pow(bgx-ggx,2) + Math.pow(bgy-ggy,2))<1000){
 
     var angle = (Math.atan2(bgy-ggy,bgx-ggx))+Math.PI
-    move(spiders[i],Math.cos(angle)*4,Math.sin(angle)*4)
+    move(spiders[i],Math.cos(angle)*increase,Math.sin(angle)*increase)
 }
 
 
@@ -236,7 +277,7 @@ function checkCollisionsShots() {
         
 
           if (shots[i] != undefined && spiders[j] != undefined && values[i] != undefined) {
-          if (specialCollide(shots[i], spiders[j], -50, 0) == true) {
+          if (specialCollide(shots[i], spiders[j], -60, 0) == true) {
 
 
                 removeArrayElement(shots, i)
@@ -253,8 +294,82 @@ function checkCollisionsShots() {
         }
     }
 
+function checkCollisionsPlayer() {
+    for (var j = 0; j < spiders.length; j++) {
+        
 
-gameLoop()
+          if (spiders[j] != undefined) {
+          if (specialCollide(player, spiders[j], -60, 0) == true) {
+
+
+                removeArrayElement(spiders, j)
+                life-=1;
+
+          }
+          }
+
+            
+        }
+    if(life==2){
+    heart3.setAttribute("opacity",0)
+    }
+    if(life==1){
+    heart3.setAttribute("opacity",0)
+    heart2.setAttribute("opacity",0)
+    }
+    if(life<= 0){
+    heart3.setAttribute("opacity",0)
+    heart2.setAttribute("opacity",0)
+    heart1.setAttribute("opacity",0)
+    gameOver = true;
+    }
+        }
+    
+
+function checkCollisionsWalls() {
+    for (var i = 0; i < walls.length; i++) {
+
+
+          if (specialCollide2(player, walls[i], 0, 0) == true) {
+lr= lr-movesx[i]
+ud= ud-movesy[i]
+                main.setAttribute("transform","translate("+lr+","+ud+")")
+
+          }
+          }
+
+            
+        }
+
+function checkCollisionsDoor() {
+
+
+          if (specialCollide2(player, document.getElementById("door"), 0, 0) == true) {
+                main.innerHTML = "<rect x='-1000' width='4000' height='4000' y='-1000' fill='green'></rect><rect x='-1050' width='50' y='-1050' height='4100' fill='grey' id='left'></rect><rect x='-1050' width='4100' y='-1050' height='50' fill='grey' id='top'></rect><rect x='3000' width='50' y='-1050' height='4100' fill='grey' id='right'></rect><rect x='-1050' width='4100' y='3000' height='50' fill='grey' id='bottom'></rect>"
+                
+                lr=0
+                ud=0
+                
+                
+                drawBack()
+drawPlants()
+enemySpawn();
+              main.setAttribute("transform","translate(0,0)")
+increase++;
+              score++
+              removeElement(floors)
+              floors = makeText("Floor: "+score, 1800, 60, 50, "Bitter", "white", 1)
+          }
+          }
+
+            
+        
+        
+    
+
+
+
 drawBack()
 drawPlants()
 enemySpawn();
+gameLoop()

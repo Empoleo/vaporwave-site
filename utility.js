@@ -278,3 +278,21 @@ function makeSpecialRect(x, y, width, height, fill, opacity,id) {
   canvas.appendChild(rect)
   return rect
 }
+
+function specialCollide2(player, obstacle, offsetX, offsetY) {
+  if (!offsetX) {
+    offsetX = 0
+  }
+  if (!offsetY) {
+    offsetY = 0
+  }
+  if (!(getX(obstacle)+lr+ offsetX > getX(player) + Number(player.getAttribute("width"))
+      || getX(obstacle)+lr+ Number(obstacle.getAttribute("width")) - offsetX < getX(player)
+      || getY(obstacle)+ud+ offsetY > getY(player) + Number(player.getAttribute("height"))
+      || getY(obstacle)+ud+ Number(obstacle.getAttribute("height")) - offsetY < getY(player))) {
+        return true
+      }
+  else {
+    return false
+  }
+}
