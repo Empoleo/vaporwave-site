@@ -5,7 +5,6 @@ var increase = 3;
 var floors = makeText("Floor: 1", 1800, 60, 50, "Bitter", "white", 1)
 
 
-
 var shots = [];
 var values = [];
 
@@ -275,9 +274,11 @@ drawx = drawx+100;
 }
 
 function drawPlants(){
-    for(var i=0;i<50;i++){
-var grass = makegImage("images/flowers.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"grass")
-var flower = makegImage("images/shrub.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"flower")
+    for(var i=0;i<40;i++){
+        var rocks = makegImage("images/rocks.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"rocks")
+        var flower = makegImage("images/flowers.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"flower")
+var shrub = makegImage("images/shrub.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"shrub")
+var bush = makegImage("images/bush.png",100*random(-9.5,28.5),100*random(-9.5,28.5),100,100,1,"bush")
     }
     var list = [0,random(-900,-100),random(1100,2900)]
         var val = random(1,2)
@@ -332,7 +333,7 @@ function checkCollisionsPlayer() {
         
 
           if (spiders[j] != undefined) {
-          if (specialCollide(player, spiders[j], -60, 0) == true) {
+          if (specialCollide(player, spiders[j], -60, -60) == true) {
 
 
                 removeArrayElement(spiders, j)
