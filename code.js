@@ -89,42 +89,42 @@ function gameLoop() {
 if(gameOver == false) {
     if (keyState[37] || keyState[65]){
         if(movingud == false){
-lr = lr+3;
+lr = lr+4;
         }
-        else{lr = lr+1.5}
+        else{lr = lr+3}
         main.setAttribute("transform","translate("+lr+","+ud+")")
 for(var i = 0; i<shots.length;i++){
 move(shots[i],3,0)
-}
+}movinglr = true;
 
     }    
     
     
     if (keyState[39] || keyState[68]){
         if(movingud==false){
-lr = lr-3;
+lr = lr-4;
         }
-        else{lr = lr-1.5}
+        else{lr = lr-3}
         main.setAttribute("transform","translate("+lr+","+ud+")")
     for(var i = 0; i<shots.length;i++){
 move(shots[i],-3,0)
-}    
+}    movinglr = true;
     }  
        if (keyState[40] || keyState[83]){
            if(movinglr == false){
-ud = ud-3;
+ud = ud-4;
            }
-           else{ud= ud-1.5}
+           else{ud= ud-3}
         main.setAttribute("transform","translate("+lr+","+ud+")")
         for(var i = 0; i<shots.length;i++){
 move(shots[i],0,-3)
-}      
+}      movingud = true;
     }
         if (keyState[38] || keyState[87]){
             if(movinglr == false){
-ud = ud+3;
+ud = ud+4;
             }
-            else{ud = ud+1.5}
+            else{ud = ud+3}
         main.setAttribute("transform","translate("+lr+","+ud+")")
         for(var i = 0; i<shots.length;i++){
 move(shots[i],0,3)
@@ -391,7 +391,7 @@ drawPlants()
 
 enemySpawn();
               main.setAttribute("transform","translate(0,0)")
-increase = increase+0.5;
+increase = increase+0.25;
               
               score++
               removeElement(floors)
