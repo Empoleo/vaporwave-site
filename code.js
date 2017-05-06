@@ -34,13 +34,34 @@ var spin = [0,90,180,270,360];
 
 var moving = false;
 
+var movinglr = false;
+var movingud = false;
+
 var keyState = {};    
 window.addEventListener('keydown',function(e){
     keyState[e.keyCode || e.which] = true;
     moving=true;
 
 },true);    
-window.addEventListener('keyup',function(e){ 
+window.addEventListener('keyup',function(e){
+    if (keyState[38] || keyState[87]){
+    movingud=false;
+    }
+    if (keyState[37] || keyState[65]){
+
+movinglr = false
+    }    
+    
+    
+    if (keyState[39] || keyState[68]){
+movinglr = false
+    }
+    
+    
+       if (keyState[40] || keyState[83]){
+           movingud=false;
+       }
+
     keyState[e.keyCode || e.which] = false;
     moving=false;
 },true);
@@ -67,7 +88,10 @@ function gameLoop() {
     
 if(gameOver == false) {
     if (keyState[37] || keyState[65]){
+        if(movingud == false){
 lr = lr+3;
+        }
+        else{lr = lr+1.5}
         main.setAttribute("transform","translate("+lr+","+ud+")")
 for(var i = 0; i<shots.length;i++){
 move(shots[i],3,0)
@@ -77,29 +101,35 @@ move(shots[i],3,0)
     
     
     if (keyState[39] || keyState[68]){
+        if(movingud==false){
 lr = lr-3;
+        }
+        else{lr = lr-1.5}
         main.setAttribute("transform","translate("+lr+","+ud+")")
     for(var i = 0; i<shots.length;i++){
 move(shots[i],-3,0)
 }    
-    }
-    
-    
+    }  
        if (keyState[40] || keyState[83]){
+           if(movinglr == false){
 ud = ud-3;
+           }
+           else{ud= ud-1.5}
         main.setAttribute("transform","translate("+lr+","+ud+")")
         for(var i = 0; i<shots.length;i++){
 move(shots[i],0,-3)
-}
+}      
     }
-    
-    
         if (keyState[38] || keyState[87]){
+            if(movinglr == false){
 ud = ud+3;
+            }
+            else{ud = ud+1.5}
         main.setAttribute("transform","translate("+lr+","+ud+")")
         for(var i = 0; i<shots.length;i++){
 move(shots[i],0,3)
 }
+            movingud = true;
         }
 
 if(mouse.x<1000){
@@ -346,6 +376,8 @@ function checkCollisionsDoor() {
 
           if (specialCollide2(player, document.getElementById("door"), 0, 0) == true) {
                 main.innerHTML = "<rect x='-1000' width='4000' height='4000' y='-1000' fill='green'></rect><rect x='-1050' width='50' y='-1050' height='4100' fill='grey' id='left'></rect><rect x='-1050' width='4100' y='-1050' height='50' fill='grey' id='top'></rect><rect x='3000' width='50' y='-1050' height='4100' fill='grey' id='right'></rect><rect x='-1050' width='4100' y='3000' height='50' fill='grey' id='bottom'></rect>"
+
+                spiders = []
                 
                 lr=0
                 ud=0
@@ -353,10 +385,11 @@ function checkCollisionsDoor() {
                 
                 drawBack()
 drawPlants()
+
 enemySpawn();
               main.setAttribute("transform","translate(0,0)")
-increase++;
-              spiders=[];
+increase = increase+0.5;
+              
               score++
               removeElement(floors)
               floors = makeText("Floor: "+score, 1800, 60, 50, "Bitter", "white", 1)
