@@ -252,8 +252,8 @@ function drawShot() {
 for(var i = 0; i < shots.length; i++) {
 
     move(shots[i],Math.cos(values[i])*10,Math.sin(values[i])*10)
-    if(getX(shots[i])>3000||getX(shots[i])<-1000||getY(shots[i])>3000||getY(shots[i])<-1000{
-    
+    if(getX(shots[i])>3000||getX(shots[i])<-1000||getY(shots[i])>3000||getY(shots[i])<-1000){
+    removeArrayElement(shots,i)
     }
     }
     
