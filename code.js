@@ -208,7 +208,7 @@ showReload()
 
 function showReload(){
 
-    if(add<100){
+    if(add<101){
         
 red.setAttribute("width",add)
 holder1[0]=load
@@ -259,7 +259,7 @@ spiders.push(spider)
 function drawShot() {
 for(var i = 0; i < shots.length; i++) {
 
-    move(shots[i],Math.cos(values[i])*10,Math.sin(values[i])*10)
+    move(shots[i],Math.cos(values[i])*15,Math.sin(values[i])*15)
     if(getX(shots[i])>3000||getX(shots[i])<-1000||getY(shots[i])>3000||getY(shots[i])<-1000){
     removeArrayElement(shots,i)
     removeArrayElement(values,i)
