@@ -4,6 +4,12 @@ var increase = 3;
 
 var floors = makeText("Floor: 1", 1800, 60, 50, "Bitter", "white", 1)
 
+song = new Audio('music.mp3'); 
+song.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+song.play();
 
 var shots = [];
 var values = [];
@@ -181,7 +187,8 @@ function shotPrepare() {
         if(gameOver == false){
     
 fireShot()
-
+fireAudio = new Audio('shot.mp3'); 
+fireAudio.play();
 
 cdn=true;
         
