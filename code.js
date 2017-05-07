@@ -4,7 +4,8 @@ var increase = 3;
 
 var floors = makeText("Floor: 1", 1800, 60, 50, "Bitter", "white", 1)
 
-song = new Audio('music.mp3'); 
+song = new Audio('music.mp3');
+song.volume = 0.6
 song.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
@@ -17,8 +18,8 @@ var values = [];
 var spiders = [];
 var spiderAng = [];
 
-var walls = []
-walls.push(document.getElementById("top"),document.getElementById("left"),document.getElementById("bottom"),document.getElementById("right"))
+var walls = [document.getElementById("top"),document.getElementById("left"),document.getElementById("bottom"),document.getElementById("right")]
+
 
 var movesx = [0,5,0,-5]
 var movesy = [5,0,-5,0]
@@ -187,7 +188,8 @@ function shotPrepare() {
         if(gameOver == false){
     
 fireShot()
-fireAudio = new Audio('shot.mp3'); 
+fireAudio = new Audio('shot.mp3');
+            fireAudio.volume = 0.6
 fireAudio.play();
 
 cdn=true;
