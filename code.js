@@ -500,7 +500,7 @@ function checkCollisionsDoor() {
                 
                 drawBack()
 drawPlants()
-
+drawSpitters();
 enemySpawn();
               main.setAttribute("transform","translate(0,0)")
 increase = increase+0.25;
