@@ -286,12 +286,20 @@ if(Math.sqrt(Math.pow(bgx-ggx,2) + Math.pow(bgy-ggy,2))<1500){
     acids.push(acid)
     acidAngles.push(angle)
     spittercdns[i] = true;
-    setTimeout(function() {spittercdns[i] = false;}, 4000);
+    cooldown(i)
+
     }
 }
 
 }
 }
+
+function cooldown(val){
+if(spittercdns[val] = true){
+setTimeout(function() {spittercdns[val] = false;}, 4000);
+}
+}
+
 
 
 function drawAcid(){
@@ -393,6 +401,26 @@ function checkCollisionsShots() {
             
         }
         }
+        for (var i = 0; i < shots.length; i++) {
+    for (var j = 0; j < spitters.length; j++) {
+        
+
+          if (shots[i] != undefined && spitters[j] != undefined && values[i] != undefined) {
+          if (specialCollide(shots[i], spitters[j], -60, 0) == true) {
+
+
+                removeArrayElement(shots, i)
+                removeArrayElement(values, i)
+                removeArrayElement(spitters, j)
+                i++;
+                j++;
+
+          }
+          }
+
+            
+        }
+        }
     }
 
 function checkCollisionsPlayer() {
@@ -404,6 +432,22 @@ function checkCollisionsPlayer() {
 
 
                 removeArrayElement(spiders, j)
+                life-=1;
+
+          }
+          }
+
+            
+        }
+        for (var j = 0; j < acids.length; j++) {
+        
+
+          if (acids[j] != undefined) {
+          if (specialCollide(player, acids[j], -60, -60) == true) {
+
+
+                removeArrayElement(acids, j)
+                removeArrayElement(acidAngles, j)
                 life-=1;
 
           }
