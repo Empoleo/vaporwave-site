@@ -2,10 +2,16 @@ var mouse = {x: 0, y: 0}
 
 var increase = 3;
 
+var shotBegin = false;
+
+var acidcdn = false;
+
+var begin = false;
+
 var floors = makeText("Floor: 1", 1800, 60, 50, "Bitter", "white", 1)
 
 song = new Audio('music.mp3');
-song.volume = 0.6
+song.volume = 0.4
 song.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
@@ -14,6 +20,13 @@ song.play();
 
 var shots = [];
 var values = [];
+
+var spitters = [];
+var spittercdns = [];
+
+
+var acids = [];
+var acidAngles = [];
 
 var spiders = [];
 var spiderAng = [];
@@ -166,16 +179,18 @@ pointing = "right"
     setTimeout(gameLoop, 10);
     checkCollisionsShots()
     drawShot()
+    drawAcid()
     checkDistance()
     checkCollisionsWalls()
     checkCollisionsPlayer()
     checkCollisionsDoor()
+    checkDistanceSpitter()
 }    }
 
 document.addEventListener('click', function () {
-
+if(shotBegin==true){
      shotPrepare();
-        
+}
         
   
 });
@@ -184,12 +199,12 @@ var cdn = false;
 var scdn = false;
 
 function shotPrepare() {
-    if(cdn == false&&scdn == false){
+    if(cdn == false&&scdn == false&&begin==true){
         if(gameOver == false){
     
 fireShot()
 fireAudio = new Audio('shot.mp3');
-            fireAudio.volume = 0.6
+            fireAudio.volume = 0.4
 fireAudio.play();
 
 cdn=true;
@@ -244,9 +259,52 @@ values.push(angle)
     }
     }
 }
+function drawSpitters(){
+    for(var i=0;i<5;i++){
+        var list = [0,random(-900,-100),random(1100,2900)]
+        var val = random(1,2)
+        var list2 = [0,random(-900,-100),random(1100,2900)]
+        var val2 = random(1,2)
+var spitter = makegImage("images/spitter.gif",list[val],list2[val2],100,100,1,"spitter")
+spittercdns.push(false)
+spitters.push(spitter)
+}
+}
+
+function checkDistanceSpitter(){
+
+for(var i = 0;i<spitters.length;i++){
+var bgx = getX(spitters[i])+lr
+var bgy = getY(spitters[i])+ud
+var ggx = getX(player)
+var ggy = getY(player)
+//console.log(Math.sqrt(Math.pow(bgx-ggx,2) + Math.pow(bgy-ggy,2)))
+if(Math.sqrt(Math.pow(bgx-ggx,2) + Math.pow(bgy-ggy,2))<1500){
+    if(spittercdns[i] == false){
+    var acid = makegImage("images/acid.png",getX(spitters[i]),getY(spitters[i]),100,100,1,"acid")
+    var angle = (Math.atan2(bgy-ggy,bgx-ggx))+Math.PI
+    acids.push(acid)
+    acidAngles.push(angle)
+    spittercdns[i] = true;
+    setTimeout(function() {spittercdns[i] = false;}, 4000);
+    }
+}
+
+}
+}
+
+
+function drawAcid(){
+    for(var i=0;i<acids.length;i++){
+move(acids[i],Math.cos(acidAngles[i])*5,Math.sin(acidAngles[i])*5)
+if(getX(acids[i])>3000||getX(acids[i])<-1000||getY(acids[i])>3000||getY(acids[i])<-1000){
+    removeArrayElement(acids,i)
+    removeArrayElement(acidAngles,i)
+    }
+    }}
 
 function enemySpawn(){
-    for(var i=0;i<30;i++){
+    for(var i=0;i<25;i++){
         var list = [0,random(-900,-100),random(1100,2900)]
         var val = random(1,2)
         var list2 = [0,random(-900,-100),random(1100,2900)]
@@ -410,13 +468,40 @@ increase = increase+0.25;
           }
 
             
+var screen = makeRect(0,0,2000,1000,"black",1,"load")  
+
+var txt = makeText("Shooty Knight", 680, 200, 100, "sans-serif", "white", 1)
         
-        
-    
+var beginBt = makeRect(800,500,400,100,"white",1,"load")  
+var beginTxt = makeText("Begin", 910, 575, 70, "sans-serif", "black", 1)
 
+var InfoBt = makeRect(800,700,400,100,"white",1,"load")  
+var InfoTxt = makeText("Info", 940, 775, 70, "sans-serif", "black", 1)
 
+beginBt.addEventListener('click', function () {
+start();
+});
 
+beginTxt.addEventListener('click', function () {
+start();
+});
+
+function startShots(){
+shotBegin = true;
+}
+
+function start(){
+    InfoTxt.setAttribute("x",6000)
+    InfoBt.setAttribute("x",6000)
+    beginTxt.setAttribute("x",6000)
+    beginBt.setAttribute("x",6000)
+    txt.setAttribute("x",6000)
+    screen.setAttribute("x",6000)
 drawBack()
 drawPlants()
 enemySpawn();
 gameLoop()
+drawSpitters();
+begin = true;
+setTimeout(startShots, 10);
+}
