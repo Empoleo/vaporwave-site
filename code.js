@@ -494,7 +494,9 @@ function checkCollisionsDoor() {
 
                 spiders = []
                 acids = []
+                acidAngles = []
                 spitters = []
+                spittercdns = [];
                 
                 lr=0
                 ud=0
