@@ -518,7 +518,8 @@ function checkCollisionsDoor() {
 
           if (specialCollide2(player, document.getElementById("door"), 0, 0) == true) {
                 main.innerHTML = "<rect x='-1000' width='4000' height='4000' y='-1000' fill='green'></rect><rect x='-1050' width='50' y='-1050' height='4100' fill='grey' id='left'></rect><rect x='-1050' width='4100' y='-1050' height='50' fill='grey' id='top'></rect><rect x='3000' width='50' y='-1050' height='4100' fill='grey' id='right'></rect><rect x='-1050' width='4100' y='3000' height='50' fill='grey' id='bottom'></rect>"
-
+                
+                ammoArray = []
                 spiders = []
                 acids = []
                 acidAngles = []
