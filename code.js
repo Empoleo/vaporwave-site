@@ -312,7 +312,7 @@ setTimeout(function() {spittercdns[val] = false;}, 4000);
 
 function drawAcid(){
     for(var i=0;i<acids.length;i++){
-move(acids[i],Math.cos(acidAngles[i])*(increase*1.6),Math.sin(acidAngles[i])*(increase*1.6))
+move(acids[i],Math.cos(acidAngles[i])*(increase*1.2),Math.sin(acidAngles[i])*(increase*1.2))
 if(getX(acids[i])>3000||getX(acids[i])<-1000||getY(acids[i])>3000||getY(acids[i])<-1000){
     removeArrayElement(acids,i)
     removeArrayElement(acidAngles,i)
