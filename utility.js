@@ -296,3 +296,28 @@ function specialCollide2(player, obstacle, offsetX, offsetY) {
     return false
   }
 }
+
+function textFade(Text){
+if(tFadeDone == false){
+Text.setAttribute( "opacity", tFade)
+tFade+=0.1;
+}else {
+  Text.setAttribute( "opacity", tFade)
+  tFade-=0.1;
+}
+if(tFade > 1){
+tFadeDone = true;
+}
+  var timeout = setTimeout(textFade,100,Text)
+if(tFade < 0 && tFadeDone == true){
+  clearTimeout(timeout)
+}
+}
+var tFadeDone = false;
+var tFade = 0;
+
+function maketxt(text,x){
+var floors = makeText(text, x, 300, 80, "VT323", "white", 1)
+tFadeDone = false;
+textFade(floors)
+}

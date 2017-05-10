@@ -2,13 +2,19 @@ var mouse = {x: 0, y: 0}
 
 var increase = 3;
 
+var ammoArray = [];
+
+var ammospawn = 0;
+
 var shotBegin = false;
+
+var accel = 1;
 
 var acidcdn = false;
 
 var begin = false;
 
-var floors = makeText("Floor: 1", 1800, 60, 50, "Bitter", "white", 1)
+var floors = makeText("Floor: 1", 1700, 70, 80, "VT323", "white", 1)
 
 song = new Audio('music.mp3');
 song.volume = 0.4
@@ -53,15 +59,17 @@ var spin = [0,90,180,270,360];
 
 var moving = false;
 
+var decrease = 1000;
+
 var movinglr = false;
 var movingud = false;
 
-var keyState = {};    
+var keyState = {};
 window.addEventListener('keydown',function(e){
     keyState[e.keyCode || e.which] = true;
     moving=true;
 
-},true);    
+},true);
 window.addEventListener('keyup',function(e){
     if (keyState[38] || keyState[87]){
     movingud=false;
@@ -69,14 +77,14 @@ window.addEventListener('keyup',function(e){
     if (keyState[37] || keyState[65]){
 
 movinglr = false
-    }    
-    
-    
+    }
+
+
     if (keyState[39] || keyState[68]){
 movinglr = false
     }
-    
-    
+
+
        if (keyState[40] || keyState[83]){
            movingud=false;
        }
@@ -104,7 +112,7 @@ var heart3 = makeImage("images/heart.png",1030,450,20,20,1,"heart")
 var life = 3;
 
 function gameLoop() {
-    
+
 if(gameOver == false) {
     if (keyState[37] || keyState[65]){
         if(movingud == false){
@@ -116,9 +124,9 @@ for(var i = 0; i<shots.length;i++){
 move(shots[i],3,0)
 }movinglr = true;
 
-    }    
-    
-    
+    }
+
+
     if (keyState[39] || keyState[68]){
         if(movingud==false){
 lr = lr-4;
@@ -128,7 +136,7 @@ lr = lr-4;
     for(var i = 0; i<shots.length;i++){
 move(shots[i],-3,0)
 }    movinglr = true;
-    }  
+    }
        if (keyState[40] || keyState[83]){
            if(movinglr == false){
 ud = ud-4;
@@ -191,8 +199,8 @@ document.addEventListener('click', function () {
 if(shotBegin==true){
      shotPrepare();
 }
-        
-  
+
+
 });
 
 var cdn = false;
@@ -201,15 +209,15 @@ var scdn = false;
 function shotPrepare() {
     if(cdn == false&&scdn == false&&begin==true){
         if(gameOver == false){
-    
+
 fireShot()
 fireAudio = new Audio('shot.mp3');
             fireAudio.volume = 0.4
 fireAudio.play();
 
 cdn=true;
-        
-setTimeout(function() {scdn=false;cdn = false;}, 1000)
+
+setTimeout(function() {scdn=false;cdn = false;}, 1000/accel)
 if(scdn == false){
 showReload()
 }
@@ -224,35 +232,35 @@ showReload()
 function showReload(){
 
     if(add<101){
-        
+
 red.setAttribute("width",add)
 holder1[0]=load
 holder2[0]=red
 
 
 
-add+=1;
+add+=(1*accel);
 
         setTimeout(showReload,7)
 }
 else{
 add=0;
 }
-    
+
 }
 
 function fireShot(){
     if(gameOver == false){
         if(pointing == "right"){
 var angle = (Math.atan2(533-mouse.y,1060-mouse.x))+Math.PI
-var shot = makeSpecialRect(1060,530,10,10,"black",1)
+var shot = makeSpecialRect(1060,525,10,10,"black",1)
 
 shots.push(shot)
 values.push(angle)
     }
 if(pointing == "left"){
 var angle = (Math.atan2(536-mouse.y,959-mouse.x))+Math.PI
-var shot = makeSpecialRect(960,530,10,10,"black",1)
+var shot = makeSpecialRect(960,525,10,10,"black",1)
 
 shots.push(shot)
 values.push(angle)
@@ -304,7 +312,7 @@ setTimeout(function() {spittercdns[val] = false;}, 4000);
 
 function drawAcid(){
     for(var i=0;i<acids.length;i++){
-move(acids[i],Math.cos(acidAngles[i])*5,Math.sin(acidAngles[i])*5)
+move(acids[i],Math.cos(acidAngles[i])*(increase*1.6),Math.sin(acidAngles[i])*(increase*1.6))
 if(getX(acids[i])>3000||getX(acids[i])<-1000||getY(acids[i])>3000||getY(acids[i])<-1000){
     removeArrayElement(acids,i)
     removeArrayElement(acidAngles,i)
@@ -331,14 +339,14 @@ for(var i = 0; i < shots.length; i++) {
     removeArrayElement(values,i)
     }
     }
-    
+
 }
 
 function drawBack(){
     var drawx = -1000;
     var drawy = -1000;
 for(var i=0;i<1600;i++){
-var grass = makegImage("images/grass3.png",drawx,drawy,100,100,1,"grass")
+var grass = makegImage("images/grass2.png",drawx,drawy,100,100,1,"grass")
 grass.setAttribute("transform","rotate("+spin[random(1,4)]+","+(drawx+50)+","+(drawy+50)+")")
 drawx = drawx+100;
     if(drawx==3000){
@@ -383,10 +391,10 @@ if(Math.sqrt(Math.pow(bgx-ggx,2) + Math.pow(bgy-ggy,2))<1000){
 function checkCollisionsShots() {
     for (var i = 0; i < shots.length; i++) {
     for (var j = 0; j < spiders.length; j++) {
-        
+
 
           if (shots[i] != undefined && spiders[j] != undefined && values[i] != undefined) {
-          if (specialCollide(shots[i], spiders[j], -60, 0) == true) {
+          if (specialCollide(shots[i], spiders[j], -40, -40) == true) {
 
 
                 removeArrayElement(shots, i)
@@ -398,15 +406,15 @@ function checkCollisionsShots() {
           }
           }
 
-            
+
         }
         }
         for (var i = 0; i < shots.length; i++) {
     for (var j = 0; j < spitters.length; j++) {
-        
+
 
           if (shots[i] != undefined && spitters[j] != undefined && values[i] != undefined) {
-          if (specialCollide(shots[i], spitters[j], -60, 0) == true) {
+          if (specialCollide(shots[i], spitters[j], -40, -40) == true) {
 
 
                 removeArrayElement(shots, i)
@@ -418,17 +426,24 @@ function checkCollisionsShots() {
           }
           }
 
-            
+
         }
         }
     }
 
 function checkCollisionsPlayer() {
+    if(ammoArray[0]!=undefined){
+    if(specialCollide(player,ammoArray[0],0,0)==true){
+    removeArrayElement(ammoArray, 0)
+    accel = accel+0.05
+    maketxt("Reload Speed Up",760)
+    }
+    }
     for (var j = 0; j < spiders.length; j++) {
-        
+
 
           if (spiders[j] != undefined) {
-          if (specialCollide(player, spiders[j], -60, -60) == true) {
+          if (specialCollide(player, spiders[j], 0, 0) == true) {
 
 
                 removeArrayElement(spiders, j)
@@ -437,13 +452,14 @@ function checkCollisionsPlayer() {
           }
           }
 
-            
+
         }
         for (var j = 0; j < acids.length; j++) {
-        
+
 
           if (acids[j] != undefined) {
-          if (specialCollide(player, acids[j], -60, -60) == true) {
+          if (specialCollide(player, acids[j], 0, 0) == true) {
+
 
 
                 removeArrayElement(acids, j)
@@ -453,7 +469,7 @@ function checkCollisionsPlayer() {
           }
           }
 
-            
+
         }
     if(life==2){
     heart3.setAttribute("opacity",0)
@@ -469,7 +485,18 @@ function checkCollisionsPlayer() {
     gameOver = true;
     }
         }
-    
+
+function createAmmo(){
+    if(ammoArray[0]!=undefined){
+    removeElement(ammoArray,0)
+    }
+var list = [0,random(-900,-100),random(1100,2900)]
+var val = random(1,2)
+var list2 = [0,random(-900,-100),random(1100,2900)]
+var val2 = random(1,2)
+var ammo = makegImage("images/ammo.png",list[val],list2[val2],90,70,1,"ammo")
+ammoArray.push(ammo)
+}
 
 function checkCollisionsWalls() {
     for (var i = 0; i < walls.length; i++) {
@@ -483,7 +510,7 @@ ud= ud-movesy[i]
           }
           }
 
-            
+
         }
 
 function checkCollisionsDoor() {
@@ -497,33 +524,35 @@ function checkCollisionsDoor() {
                 acidAngles = []
                 spitters = []
                 spittercdns = [];
-                
+
                 lr=0
                 ud=0
-                
-                
+
+
                 drawBack()
 drawPlants()
+createAmmo()
 drawSpitters();
 enemySpawn();
               main.setAttribute("transform","translate(0,0)")
-increase = increase+0.25;
-              
+increase = increase+0.2;
+
               score++
               removeElement(floors)
-              floors = makeText("Floor: "+score, 1800, 60, 50, "Bitter", "white", 1)
+              floors = makeText("Floor: "+score, 1700, 70, 80, "VT323", "white", 1)
+              maketxt("Floor: "+score,870)
           }
           }
 
-            
-var screen = makeRect(0,0,2000,1000,"black",1,"load")  
+
+var screen = makeRect(0,0,2000,1000,"black",1,"load")
 
 var txt = makeText("Shooty Knight", 680, 200, 100, "sans-serif", "white", 1)
-        
-var beginBt = makeRect(800,500,400,100,"white",1,"load")  
+
+var beginBt = makeRect(800,500,400,100,"white",1,"load")
 var beginTxt = makeText("Begin", 910, 575, 70, "sans-serif", "black", 1)
 
-var InfoBt = makeRect(800,700,400,100,"white",1,"load")  
+var InfoBt = makeRect(800,700,400,100,"white",1,"load")
 var InfoTxt = makeText("Info", 940, 775, 70, "sans-serif", "black", 1)
 
 beginBt.addEventListener('click', function () {
@@ -547,9 +576,12 @@ function start(){
     screen.setAttribute("x",6000)
 drawBack()
 drawPlants()
+createAmmo()
 enemySpawn();
 gameLoop()
 drawSpitters();
 begin = true;
 setTimeout(startShots, 10);
+    
+    
 }
