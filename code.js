@@ -17,7 +17,7 @@ var begin = false;
 var floors = makeText("Floor: 1", 1700, 70, 80, "VT323", "white", 1)
 
 song = new Audio('music.mp3');
-song.volume = 0.4
+song.volume = 0.3
 song.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
@@ -212,7 +212,7 @@ function shotPrepare() {
 
 fireShot()
 fireAudio = new Audio('shot.mp3');
-            fireAudio.volume = 0.4
+            fireAudio.volume = 0.3
 fireAudio.play();
 
 cdn=true;
