@@ -546,7 +546,7 @@ increase = increase+0.2;
           }
 
 
-var screen = makeRect(0,0,2000,1000,"black",1,"load")
+var screen = makeRect(0,0,2000,1000,"darkgrey",1,"load")
 
 var txt = makeText("Shooty Knight", 680, 200, 100, "sans-serif", "white", 1)
 
@@ -563,6 +563,80 @@ start();
 beginTxt.addEventListener('click', function () {
 start();
 });
+
+InfoBt.addEventListener('click', function () {
+info();
+});
+
+InfoTxt.addEventListener('click', function () {
+info();
+});
+
+    var ibt = makeRect(6000,840,400,100,"white",1,"load")
+    var itxt = makeText("Back", 6000, 915, 70, "sans-serif", "black", 1)
+
+    var s = makeImage("images/spider.gif",6000,100,60,60,1,"ammo")
+    var stxt = makeText(" - If you get close enough, this spider will chase you down until either you kill it, or it harms you.", 6000, 138, 40, "sans-serif", "black", 1)
+    
+    var sp = makeImage("images/spitter.gif",6000,250,60,60,1,"ammo")
+    var sptxt = makeText(" - If you are within a certain range, this enemy will fire globs of acid towards you.", 6000, 288, 40, "sans-serif", "black", 1)
+    
+    var a = makeImage("images/ammo.png",6000,400,60,60,1,"ammo")
+    var atxt = makeText(" - If you pick up this box of munitions, your gun's reload speed becomes quicker.", 6000, 438, 40, "sans-serif", "black", 1)
+    
+    var t = makeImage("images/trapdoor.png",6000,550,60,60,1,"ammo")
+    var ttxt = makeText(" - Go through this trapdoor to move to the next floor, each floor slowly becoming harder.", 6000, 588, 40, "sans-serif", "black", 1)
+    
+function back(){
+ibt.setAttribute("x",6000)
+itxt.setAttribute("x",6000)
+
+InfoTxt.setAttribute("x",940)
+    InfoBt.setAttribute("x",800)
+    beginTxt.setAttribute("x",910)
+    beginBt.setAttribute("x",800)
+    txt.setAttribute("x",680)
+    s.setAttribute("x",6000)
+    stxt.setAttribute("x",6000)
+    sp.setAttribute("x",6000)
+    sptxt.setAttribute("x",6000)
+    atxt.setAttribute("x",6000)
+    a.setAttribute("x",6000)
+    ttxt.setAttribute("x",6000)
+    t.setAttribute("x",6000)
+}
+
+function info(){
+    InfoTxt.setAttribute("x",6000)
+    InfoBt.setAttribute("x",6000)
+    beginTxt.setAttribute("x",6000)
+    beginBt.setAttribute("x",6000)
+    txt.setAttribute("x",6000)
+    ibt.setAttribute("x",1550)
+    itxt.setAttribute("x",1670)
+    s.setAttribute("x",100)
+    stxt.setAttribute("x",200)
+    sp.setAttribute("x",100)
+    sptxt.setAttribute("x",200)
+    a.setAttribute("x",100)
+    atxt.setAttribute("x",200)
+    ttxt.setAttribute("x",200)
+    t.setAttribute("x",100)
+if(ibt!==null){
+
+    }
+    else{
+    ibt.setAttribute("x",1550)
+    itxt.setAttribute("x",1670)
+    }
+    ibt.addEventListener('click', function () {
+back();
+});
+
+itxt.addEventListener('click', function () {
+back();
+});
+}
 
 function startShots(){
 shotBegin = true;
