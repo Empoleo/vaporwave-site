@@ -12,6 +12,8 @@ var accel = 1;
 
 var acidcdn = false;
 
+var diecheck = true;
+
 var begin = false;
 
 var floors = makeText("Floor: 1", 1700, 70, 80, "VT323", "white", 1)
@@ -112,7 +114,10 @@ var heart3 = makeImage("images/heart.png",1030,450,20,20,1,"heart")
 var life = 3;
 
 function gameLoop() {
-
+    if(gameOver == true && diecheck == true){
+    checkForDeath();
+        console.log("")
+    }
 if(gameOver == false) {
     if (keyState[37] || keyState[65]){
         if(movingud == false){
@@ -193,6 +198,8 @@ pointing = "right"
     checkCollisionsPlayer()
     checkCollisionsDoor()
     checkDistanceSpitter()
+    
+
 }    }
 
 document.addEventListener('click', function () {
@@ -202,6 +209,29 @@ if(shotBegin==true){
 
 
 });
+
+
+
+
+var rts = makeRect(6000,0,2000,1000,"darkgrey",1,"load")
+var rtBt = makeRect(6000,500,400,100,"white",1,"load")
+var rtTxt = makeText("Restart", 6000, 575, 70, "sans-serif", "black", 1)
+
+    rtTxt.addEventListener('click', function () {
+location.reload();
+});
+
+rtBt.addEventListener('click', function () {
+location.reload();
+});
+
+function checkForDeath(){
+diecheck = false;
+rts.setAttribute("x",0)
+rtBt.setAttribute("x",800)
+rtTxt.setAttribute("x",885)
+player.setAttribute("x",3000)
+}
 
 var cdn = false;
 var scdn = false;
