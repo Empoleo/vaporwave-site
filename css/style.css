@@ -16,8 +16,9 @@ background-color: rgba(255,255,255,0.8);
 margin:100px;
     max-height: 70vh;
     width: auto;
-    overflow-y: auto;
+    overflow: auto;
 height: 100vh;
+    
 }
 .center{
 text-align: center;
@@ -46,5 +47,28 @@ background-color:  rgba(255,255,255,0.8);
 }
 
 .pad{
-padding:10%
+padding:5%;
+}
+.palm1{
+    
+height: 35%;
+    width: 10%;
+    position: absolute;
+    left: 20vh;
+    bottom: 18vh;
+    
+}
+.palm2{
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    height: 35%;
+    width: 10%;
+    right: 20vh;
+    bottom: 18vh;
+position: absolute;
+
 }
