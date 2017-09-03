@@ -51,8 +51,8 @@ padding:5%;
 }
 .palm1{
     
-height: 35%;
-    width: 10%;
+height: 40%;
+    width: auto;
     position: absolute;
     left: 20vh;
     bottom: 18vh;
@@ -65,8 +65,7 @@ height: 35%;
     transform: scaleX(-1);
     filter: FlipH;
     -ms-filter: "FlipH";
-    height: 35%;
-    width: 10%;
+    height: 40%;
     right: 20vh;
     bottom: 18vh;
 position: absolute;
