@@ -33,10 +33,10 @@ hurtval=true;
 }
 
 function insidelist(){
-if(insideval==false){
-    insideval=true;
+    if(insideval==false){
+insideval=true;
 document.getElementById("insidelist").innerHTML="<ul class='list-group'><li class='list-group-item'><b>Songs:</b></li><li class='list-group-item'>heartbeat - 1.99$</li><li class='list-group-item'>disconnect - 1.99$</li><li class='list-group-item'>corrosion - 1.99$</li><li class='list-group-item'>loop - 1.99$</li></ul>"
-}
+    }
 else{
 insideval=false;
 document.getElementById("insidelist").innerHTML=""
