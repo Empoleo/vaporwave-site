@@ -1,4 +1,4 @@
-var key = Math.floor(Math.random() * 3);
+var key = Math.floor(Math.random() * 4);
 
 var dictionary = {0:"song", 1:"song2", 2:"song3", 3:"song4"};
 
