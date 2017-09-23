@@ -18,10 +18,13 @@ function tour() {
 $("#container").load("html/tour.html .tour");
 }
 
+
+
 var hurtval = false;
 var insideval = false;
 var melodyval = false;
 var blindval = false;
+var ehval = false;
 
 function hurtlist(){
 if(hurtval==false){
@@ -73,5 +76,16 @@ document.getElementById("melodylist").innerHTML="<ul class='list-group'><li clas
 else{
 melodyval=false;
 document.getElementById("melodylist").innerHTML=""
+}
+}
+
+function ehlist(){
+if(ehval==false){
+    ehval=true;
+document.getElementById("ehlist").innerHTML="<ul class='list-group'><li class='list-group-item'><b>Songs:</b></li><li class='list-group-item'>weird - 1.99$</li><li class='list-group-item'>bored - 1.99$</li><li class='list-group-item'>tired - 1.99$</li><li class='list-group-item'>slow - 1.99$</li></ul>"
+}
+else{
+ehval=false;
+document.getElementById("ehlist").innerHTML=""
 }
 }
